@@ -27,23 +27,26 @@ class CommissionController extends BaseController
     public function store()
     {
         $operateur = (int) $this->request->getPost('operateur');
-        $valeur = (float) $this->request->getPost('valeur');
+        $valeurPourcentage = (float) $this->request->getPost('valeur');
 
-        if ($operateur <= 0 || $valeur < 0 || $valeur > 100) {
+        if ($operateur <= 0 || $valeurPourcentage < 0 || $valeurPourcentage > 100) {
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Opérateur ou pourcentage invalide.');
         }
 
+        // pourcentage stocké en fraction (0,05 = 5%), la saisie utilisateur est en points de %
+        $valeurFraction = $valeurPourcentage / 100;
+
         $existe = $this->commissionModel->where('id_operateur', $operateur)->first();
 
         if ($existe) {
-            $this->commissionModel->updateCommission($valeur, $operateur);
+            $this->commissionModel->updateCommission($valeurFraction, $operateur);
 
             return redirect()->to('commissions')->with('message', 'Commission mise à jour.');
         }
 
-        if (!$this->commissionModel->addConfCommission($valeur, $operateur)) {
+        if (!$this->commissionModel->addConfCommission($valeurFraction, $operateur)) {
             return redirect()->back()
                 ->withInput()
                 ->with('error', "Impossible d'enregistrer la commission.");

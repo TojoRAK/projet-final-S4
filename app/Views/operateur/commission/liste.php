@@ -47,7 +47,7 @@ $this->extend('layouts/main');
                     <?php foreach ($commissions as $c): ?>
                         <tr>
                             <td><?= esc($c['nom_operateur']) ?></td>
-                            <td><?= esc($c['pourcentage']) ?> %</td>
+                            <td><?= esc((float) $c['pourcentage'] * 100) ?> %</td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

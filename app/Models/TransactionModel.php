@@ -8,7 +8,7 @@ class TransactionModel extends Model
 {
     protected $table         = 'transactions';
     protected $primaryKey    = 'id';
-    protected $allowedFields = ['id_type_operation', 'montant', 'frais_applique', 'date'];
+    protected $allowedFields = ['id_type_operation', 'montant', 'frais_applique', 'date', 'id_operateur'];
     protected $returnType    = 'array';
     protected $useTimestamps = false;
 
@@ -144,7 +144,7 @@ class TransactionModel extends Model
 
             if ($id_autre_operateur !== null) {
                 $pourcentage = $commissionModel->getCommissionByOperateur($id_autre_operateur);
-                $commission = (int) round($montantBase * $pourcentage / 100);
+                $commission = (int) round($montantBase * $pourcentage);
             }
 
             if ($payer_frais && $id_autre_operateur === null) {
@@ -155,9 +155,10 @@ class TransactionModel extends Model
             $frais = $frais_transfert + $commission;
 
             $envois[] = [
-                'compte'  => $compteBeneficiaire,
-                'montant' => $montantTransaction,
-                'frais'   => $frais,
+                'compte'        => $compteBeneficiaire,
+                'montant'       => $montantTransaction,
+                'frais'         => $frais,
+                'id_operateur'  => $id_autre_operateur,
             ];
 
             $coutTotal += $montantTransaction + $frais;
@@ -175,6 +176,7 @@ class TransactionModel extends Model
                 'montant'           => $envoi['montant'],
                 'frais_applique'    => $envoi['frais'],
                 'date'              => date('Y-m-d H:i:s'),
+                'id_operateur'      => $envoi['id_operateur'],
             ]);
 
             $this->db->table('mouvements')->insert([
@@ -303,30 +305,21 @@ class TransactionModel extends Model
 
     private function requeteBase()
     {
-        $sousRequete = $this->db->table('mouvements')
-            ->select('mouvements.id_transaction, MAX(conf_prefix.id_operateur) AS id_operateur_attribue')
-            ->join('compte', 'compte.id = mouvements.id_compte')
-            ->join('clients', 'clients.id = compte.id_client')
-            ->join('conf_prefix', 'conf_prefix.prefix = SUBSTR(clients.telephone, 1, 3)', 'left')
-            ->groupBy('mouvements.id_transaction')
-            ->getCompiledSelect(false);
-
-        return $this->db->table('transactions')
-            ->join("({$sousRequete}) AS attribution", 'attribution.id_transaction = transactions.id');
+        return $this->db->table('transactions');
     }
 
 
     private function appliquerFiltreOperateur($builder, ?int $idOperateur, bool $autresOperateurs)
     {
         if ($autresOperateurs) {
-            return $builder->where('attribution.id_operateur_attribue IS NOT NULL', null, false);
+            return $builder->where('transactions.id_operateur IS NOT NULL', null, false);
         }
 
         if ($idOperateur !== null) {
-            return $builder->where('attribution.id_operateur_attribue', $idOperateur);
+            return $builder->where('transactions.id_operateur', $idOperateur);
         }
 
-        return $builder->where('attribution.id_operateur_attribue', null);
+        return $builder->where('transactions.id_operateur', null);
     }
 
 
