@@ -51,25 +51,25 @@
                 - [] champs : date, montant, type, frais, béneficiaire (raha misy) 
                 
 - [] Coté client (Tojo 3910)
-    - [] Login
-        - [] Metier
+    - [X] Login
+        - [X] Metier
             - [X] AuthModel
                 - [X] verifierExistenceNum($num)
                     - [X] check prefix regex (+261XX ou 0XX) 
-            - [] AuthController
-                - [] doLogin()
-                    - [] Creation session
-                    - [] verification
-                    - [] redirection dashboard 
-                        - [] message d'erreur
-        - [] Affichage
-            - [] auth/login.php
+            - [X] AuthController
+                - [X] doLogin()
+                    - [X] Creation session
+                    - [X] verification
+                    - [X] redirection dashboard 
+                        - [X] message d'erreur
+        - [X] Affichage
+            - [X] auth/login.php
     - [] Dashboard Client
         - [] client/dashboard
-            - [] Metier
-                - [] voirSolde($id_compte)
-                - [] getHistorique($id_compte)
-                    - [] Limiter 10 dernières transactions
+            - [X] Metier
+                - [X] voirSolde($id_compte)
+                - [X] getHistorique($id_compte)
+                    - [X] Limiter 10 dernières transactions
             - [] Base
             - [] Affichage
                 - [] Carte qui affiche le solde

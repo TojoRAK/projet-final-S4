@@ -27,9 +27,9 @@ class AuthController extends BaseController
                 ->withInput();
         }
 
-        session()->set([
-            'client_id' => $client->id,
-            'client_nom' => $client->nom,
+        session()->set('client', [
+            'id' => $client->id,
+            'nom' => $client->nom,
             'telephone' => $client->telephone,
             'logged_in' => true,
         ]);
