@@ -29,11 +29,25 @@ class PrefixeModel extends Model
 
     public function estNotreOperateur(string $numero): bool
     {
+        $conf = $this->trouverPrefixe($numero);
+
+        return $conf !== null && $conf['id_operateur'] === null;
+    }
+
+    public function getOperateurByNumero(string $numero): ?int
+    {
+        $conf = $this->trouverPrefixe($numero);
+
+        return $conf['id_operateur'] ?? null;
+    }
+
+    private function trouverPrefixe(string $numero): ?array
+    {
         $authModel = new AuthModel();
         $normalise = $authModel->normaliserNumero($numero);
         $prefixe = substr($normalise, 0, 3);
 
-        return $this->where('prefix', $prefixe)->countAllResults() > 0;
+        return $this->where('prefix', $prefixe)->first();
     }
 
     private function isValidFormat(string $prefix): bool

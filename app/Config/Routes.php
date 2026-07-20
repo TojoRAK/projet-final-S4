@@ -42,4 +42,7 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/situation-client', 'SituationClientController::index');
 
     $routes->get('/clients/(:num)/historique', 'HistoriqueClientController::index/$1');
+
+    $routes->get('/commissions', 'CommissionController::index');
+    $routes->post('/commissions', 'CommissionController::store');
 });

@@ -88,6 +88,7 @@ class TransactionModel extends Model
         $authModel = new AuthModel();
         $compteModel = new CompteModel();
         $prefixeModel = new PrefixeModel();
+        $commissionModel = new CommissionModel();
 
         $compteEmetteur = $compteModel->getCompteByClient($id_client);
 
@@ -111,39 +112,58 @@ class TransactionModel extends Model
         $coutTotal = 0;
 
         foreach ($tel_beneficiaires as $index => $tel) {
-            $beneficiaire = $authModel->verifierExistenceNum($tel);
+            $id_autre_operateur = $prefixeModel->getOperateurByNumero($tel);
 
-            if (!$beneficiaire) {
-                return "Numéro de bénéficiaire invalide ou inexistant : {$tel}";
+            if ($nombreBeneficiaires > 1 && $id_autre_operateur !== null) {
+                return "Envoi multiple impossible : le bénéficiaire {$tel} n'utilise pas notre opérateur";
             }
 
-            $compteBeneficiaire = $compteModel->getCompteByClient($beneficiaire->id);
+            $compteBeneficiaire = null;
 
-            if (!$compteBeneficiaire) {
-                return "Compte introuvable pour le bénéficiaire {$tel}";
-            }
+            if ($id_autre_operateur === null) {
+                $beneficiaire = $authModel->verifierExistenceNum($tel);
 
-            if ($compteBeneficiaire->id === $compteEmetteur->id) {
-                return 'Vous ne pouvez pas transférer vers votre propre compte';
+                if (!$beneficiaire) {
+                    return "Numéro de bénéficiaire invalide ou inexistant : {$tel}";
+                }
+
+                $compteBeneficiaire = $compteModel->getCompteByClient($beneficiaire->id);
+
+                if (!$compteBeneficiaire) {
+                    return "Compte introuvable pour le bénéficiaire {$tel}";
+                }
+
+                if ($compteBeneficiaire->id === $compteEmetteur->id) {
+                    return 'Vous ne pouvez pas transférer vers votre propre compte';
+                }
+            } elseif (!preg_match('/^(\+2613|03)[0-9]{8}$/', $tel)) {
+                return "Numéro de bénéficiaire invalide : {$tel}";
             }
 
             $montantBase = $montantParBeneficiaire + ($index === 0 ? $reste : 0);
             $frais_transfert = $this->getFrais($montantBase, $id_type_operation);
             $frais_retrait_prepaye = 0;
+            $commission = 0;
 
-            if ($payer_frais && $prefixeModel->estNotreOperateur($tel)) {
+            if ($id_autre_operateur !== null) {
+                $pourcentage = $commissionModel->getCommissionByOperateur($id_autre_operateur);
+                $commission = (int) round($montantBase * $pourcentage / 100);
+            }
+
+            if ($payer_frais && $id_autre_operateur === null) {
                 $frais_retrait_prepaye = $this->getFrais($montantBase, $type_retrait->id);
             }
 
             $montantTransaction = $montantBase + $frais_retrait_prepaye;
+            $frais = $frais_transfert + $commission;
 
             $envois[] = [
                 'compte'  => $compteBeneficiaire,
                 'montant' => $montantTransaction,
-                'frais'   => $frais_transfert,
+                'frais'   => $frais,
             ];
 
-            $coutTotal += $montantTransaction + $frais_transfert;
+            $coutTotal += $montantTransaction + $frais;
         }
 
         if ($compteEmetteur->solde < $coutTotal) {
@@ -166,14 +186,17 @@ class TransactionModel extends Model
                 'sens'           => 'debit',
             ]);
 
-            $this->db->table('mouvements')->insert([
-                'id_transaction' => $id_transaction,
-                'id_compte'      => $envoi['compte']->id,
-                'sens'           => 'credit',
-            ]);
-
             $compteModel->updateSolde($compteEmetteur->id, -($envoi['montant'] + $envoi['frais']));
-            $compteModel->updateSolde($envoi['compte']->id, $envoi['montant']);
+
+            if ($envoi['compte'] !== null) {
+                $this->db->table('mouvements')->insert([
+                    'id_transaction' => $id_transaction,
+                    'id_compte'      => $envoi['compte']->id,
+                    'sens'           => 'credit',
+                ]);
+
+                $compteModel->updateSolde($envoi['compte']->id, $envoi['montant']);
+            }
         }
 
         $this->db->transComplete();
