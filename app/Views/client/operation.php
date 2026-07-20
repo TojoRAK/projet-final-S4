@@ -33,6 +33,15 @@ $this->extend('layouts/main');
                     <label class="form-label">Numéro bénéficiaire</label>
                     <input type="text" name="tel_beneficiaire" id="tel_beneficiaire" class="form-control" placeholder="+2613XXXXXXXX ou 03XXXXXXXX">
                 </div>
+
+                <div class="col-12" id="payer-frais-field" style="display: none;">
+                    <div class="form-check">
+                        <input type="checkbox" name="payer_frais" value="1" id="payer_frais" class="form-check-input">
+                        <label class="form-check-label" for="payer_frais">
+                            Payer les frais de retrait du bénéficiaire
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <div class="d-flex gap-2 mt-4">
@@ -50,6 +59,8 @@ $this->extend('layouts/main');
     const typeSelect = document.getElementById('type_operation');
     const beneficiaireField = document.getElementById('beneficiaire-field');
     const beneficiaireInput = document.getElementById('tel_beneficiaire');
+    const payerFraisField = document.getElementById('payer-frais-field');
+    const payerFraisInput = document.getElementById('payer_frais');
 
     typeSelect.addEventListener('change', function () {
         const selectedOption = typeSelect.options[typeSelect.selectedIndex];
@@ -57,9 +68,11 @@ $this->extend('layouts/main');
 
         beneficiaireField.style.display = isTransfert ? 'block' : 'none';
         beneficiaireInput.required = isTransfert;
+        payerFraisField.style.display = isTransfert ? 'block' : 'none';
 
         if (!isTransfert) {
             beneficiaireInput.value = '';
+            payerFraisInput.checked = false;
         }
     });
 </script>

@@ -77,8 +77,7 @@ class TransactionModel extends Model
         return $this->db->transStatus() ? true : 'Erreur technique, veuillez réessayer';
     }
 
-
-    public function transfert(int $id_client, int $montant, string $tel_beneficiaire)
+    public function transfert(int $id_client, int $montant, string $tel_beneficiaire, bool $payer_frais = false)
     {
         $authModel = new AuthModel();
         $compteModel = new CompteModel();
@@ -102,7 +101,16 @@ class TransactionModel extends Model
 
         $type = $this->db->table('type_operation')->where('libelle', 'transfert')->get()->getRow();
         $id_type_operation = $type->id;
-        $frais = $this->getFrais($montant, $id_type_operation);
+
+        $frais_transfert = $this->getFrais($montant, $id_type_operation);
+        $frais_retrait_prepaye = 0;
+
+        if ($payer_frais) {
+            $type_retrait = $this->db->table('type_operation')->where('libelle', 'retrait')->get()->getRow();
+            $frais_retrait_prepaye = $this->getFrais($montant, $type_retrait->id);
+        }
+
+        $frais = $frais_transfert + $frais_retrait_prepaye;
 
         if ($compteEmetteur->solde < ($montant + $frais)) {
             return "Solde insuffisant (frais de {$frais} Ar inclus)";

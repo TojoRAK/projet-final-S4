@@ -31,11 +31,12 @@ class OperationController extends BaseController
         $montant = (int) $this->request->getPost('montant');
         $type_operation = (int) $this->request->getPost('type_operation');
         $tel_beneficiaire = $this->request->getPost('tel_beneficiaire');
+        $payer_frais = (bool) $this->request->getPost('payer_frais');
         $transactionModel = new TransactionModel();
         $type = $transactionModel->getTypeOperationById($type_operation);
 
         if ($type && $type->libelle === 'transfert') {
-            $result = $transactionModel->transfert($client['id'], $montant, $tel_beneficiaire);
+            $result = $transactionModel->transfert($client['id'], $montant, $tel_beneficiaire, $payer_frais);
         } else {
             $result = $transactionModel->ajouterMouvement($client['id'], $montant, $type_operation);
         }
