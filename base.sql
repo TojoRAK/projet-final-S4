@@ -68,3 +68,26 @@ INSERT INTO tranches (min, max, frais, id_type_operation) VALUES
     (1000001,  2000000, 3000, 2);
 
 INSERT INTO clients (nom,telephone) VALUES ('client' , '0322152576');
+
+
+CREATE TABLE operateur (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    username      TEXT NOT NULL UNIQUE,
+    password      TEXT NOT NULL,           -- hash via password_hash()
+    date_creation TEXT NOT NULL DEFAULT (datetime('now'))
+);
+
+
+INSERT INTO tranches (min, max, frais, id_type_operation) VALUES
+    (100,      1000,    50,   3),
+    (1001,     5000,    50,   3),
+    (5001,     10000,   100,  3),
+    (10001,    25000,   200,  3),
+    (25001,    50000,   400,  3),
+    (50001,    100000,  800,  3),
+    (100001,   250000,  1500, 3),
+    (250001,   500000,  1500, 3),
+    (500001,   1000000, 2500, 3),
+    (1000001,  2000000, 3000, 3);
+
+INSERT INTO operateur (username, password) VALUES ('admin', '$2y$12$RIL6dmqdaj4eqJN2dpx67OsRRA0/R33OSJmzUwbN9/iDhV8Vu6TFy');

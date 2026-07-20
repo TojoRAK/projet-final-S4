@@ -5,40 +5,51 @@
 - [x] Init codeigniter (Fifaliana 3903)
 
 - [] Coté opérateur (Fifaliana 3903)
-    - [] Login
-    - [] Configuration 
-        - [] Metier
-            - [] addPrefix($prefix)
-                - [] validation format 03X
-            - [] findAllPrefix()
-        - [] Affichage
-            - [] liste des prefixes
-            - [] saisie prefix
-    - [] Type Operations
-        - [] Metier
-            - [] addType($libelle)
-            - [] addTranche($min,$max,$frais, $id_type_operation)
-        - [] Affichage
-            - [] saisie, fiche, liste
-    - [] Situation Gain
-        - [] Metier
-            - [] getSituationGain($id_type)
-            - [] getSituationGlobale()
-        - [] Affichage
-            - [] Cartes retrait et transfert
-            - [] Graphes
-                - [] Retrait
-                - [] transfert
-                - [] Superposé
+    - [x] Login
+        - [x] Metier
+            - [x] table operateur (username, password hashé)
+            - [x] login(username, password)
+            - [x] logout()
+            - [x] session/middleware (AuthFilter)
+        - [x] Affichage
+            - [x] formulaire de connexion
+    - [x] Configuration 
+        - [x] Metier
+            - [x] addPrefix($prefix)
+                - x[] validation format 03X
+            - [x] findAllPrefix()
+        - [x] Affichage
+            - [x] liste des prefixes
+            - [x] saisie prefix
+    - [x] Type Operations
+        - [x] Metier
+            - [x] addType($libelle)
+            - [x] addTranche($min,$max,$frais, $id_type_operation)
+                - [] validation anti-chevauchement
+            - [x] updateTranche($id, $min,$max,$frais)
+                - [] validation anti-chevauchement
+            - [x] deleteTranche($id)
+        - [x] Affichage
+            - [x] saisie, fiche, liste
+    - [x] Situation Gain
+        - [x] Metier
+            - [x] getSituationGain($id_type)
+            - [x] getSituationGlobale()
+        - [x] Affichage
+            - [x] Cartes retrait et transfert
+            - [x] Graphes
+                - [x] Retrait
+                - [x] transfert
+                - [x] Superposé
     - [] Situation Client
-        - [] Metier
-            - [] getSituationClients()
-        - [] Affichage
-            - [] liste
-            - [] champs
-                - [] client (nom)
-                - [] telephone
-                - [] solde
+        - [x] Metier
+            - [x] getSituationClients()
+        - [x] Affichage
+            - [x] liste
+            - [x] champs
+                - [x] client (nom)
+                - [x] telephone
+                - [x] solde
     - [] Historique Client
         - [] Metier
             - [] voirHistorique($id_client , $filtre[])
@@ -48,7 +59,7 @@
                     - [] montant (intervalle)
                     - [] type de transaction
             - [] liste
-                - [] champs : date, montant, type, frais, béneficiaire (raha misy) 
+                - [] champs : date, montant, type, frais, béneficiaire (raha misy)
                 
 - [X] Coté client (Tojo 3910)
     - [X] Login
