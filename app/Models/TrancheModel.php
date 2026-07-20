@@ -68,7 +68,6 @@ class TrancheModel extends Model
             ->findAll();
     }
 
-    
     private function hasOverlap(int $min, int $max, int $idTypeOperation, ?int $excludeId = null): bool
     {
         $builder = $this->where('id_type_operation', $idTypeOperation)

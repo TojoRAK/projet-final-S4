@@ -11,6 +11,7 @@ $navItemsOperateur = [
     ['url' => 'type-operations',   'icon' => 'bi-diagram-3',      'label' => "Types d'opérations"],
     ['url' => 'situation-gain',    'icon' => 'bi-graph-up-arrow', 'label' => 'Situation gain'],
     ['url' => 'situation-client',  'icon' => 'bi-people',         'label' => 'Situation clients'],
+    ['url' => 'commissions',       'icon' => 'bi-percent',        'label' => 'Commissions'],
 ];
 
 $isOperateur = ($space ?? 'client') === 'operateur';

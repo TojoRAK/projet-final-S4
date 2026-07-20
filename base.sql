@@ -67,11 +67,18 @@ INSERT INTO tranches (min, max, frais, id_type_operation) VALUES
     (500001,   1000000, 2500, 2),
     (1000001,  2000000, 3000, 2);
 
-INSERT INTO clients (nom,telephone) VALUES ('client' , '0322152576');
 
 INSERT INTO compte(id_client, solde) VALUES (1,0);
 INSERT INTO clients (nom, telephone) VALUES ('tojo','0335258294');
+INSERT INTO clients (nom, telephone) VALUES ('fifaliana','0372152576');
+
+INSERT INTO clients (nom, telephone) VALUES ('roberto' , '0331234567');
+
 INSERT INTO compte(id_client,solde) VALUES (2,0);
+INSERT INTO compte(id_client,solde) VALUES (3,0);
+INSERT INTO compte(id_client,solde) VALUES (4,0);
+
+
 CREATE TABLE operateur (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
     username      TEXT NOT NULL UNIQUE,

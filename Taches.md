@@ -152,17 +152,17 @@
         - [x] Affichage 
             - [x] ajouter dans situation gain
 
-- [] Coté client (Tojo 3910)
-    - [] Frais de retrait
-        - [] Metier
-            - [] modifier fonction transfert() : ajouter bool payer_frais
-                - [] si oui, modifier montants à débiter et créditer
-        - [] Affichage
-            - [] ajouter checkbox pour payer les frais
-            - [] vérifier l'opérateur si autre
-    - [] Envoi multiple
-        - [] Metier
-            - [] modifier la fonction transfert() : modifier tel_beneficiaire en tableau
-        - [] Affichage
-            - [] ajouter bouton "+" si même opérateur    
+- [X] Coté client (Tojo 3910)
+    - [X] Frais de retrait
+        - [X] Metier
+            - [X] modifier fonction transfert() : ajouter bool payer_frais
+                - [X] si oui, modifier montants à débiter et créditer
+        - [X] Affichage
+            - [X] ajouter checkbox pour payer les frais
+            - [X] vérifier l'opérateur si autre
+    - [X] Envoi multiple
+        - [X] Metier
+            - [X] modifier la fonction transfert() : modifier tel_beneficiaire en tableau
+        - [X] Affichage
+            - [X] ajouter bouton "+" si même opérateur    
 

@@ -26,3 +26,5 @@ writable/session/*
 !writable/logs/.gitkeep
 !writable/uploads/.gitkeep
 !writable/session/.gitkeep
+base.db
+*.db
