@@ -53,9 +53,9 @@
 - [] Coté client (Tojo 3910)
     - [] Login
         - [] Metier
-            - [] AuthModel
-                - [] verifierExistenceNum($num)
-                    - [] check prefix regex (+261XX ou 0XX) 
+            - [X] AuthModel
+                - [X] verifierExistenceNum($num)
+                    - [X] check prefix regex (+261XX ou 0XX) 
             - [] AuthController
                 - [] doLogin()
                     - [] Creation session
