@@ -5,19 +5,30 @@
 - [x] Init codeigniter (Fifaliana 3903)
 
 - [] Coté opérateur (Fifaliana 3903)
-    - [] Login
-    - [] Configuration 
-        - [] Metier
-            - [] addPrefix($prefix)
-                - [] validation format 03X
-            - [] findAllPrefix()
-        - [] Affichage
-            - [] liste des prefixes
-            - [] saisie prefix
+    - [x] Login
+        - [x] Metier
+            - [x] table operateur (username, password hashé)
+            - [x] login(username, password)
+            - [x] logout()
+            - [x] session/middleware (AuthFilter)
+        - [x] Affichage
+            - [x] formulaire de connexion
+    - [x] Configuration 
+        - [x] Metier
+            - [x] addPrefix($prefix)
+                - x[] validation format 03X
+            - [x] findAllPrefix()
+        - [x] Affichage
+            - [x] liste des prefixes
+            - [x] saisie prefix
     - [] Type Operations
         - [] Metier
             - [] addType($libelle)
             - [] addTranche($min,$max,$frais, $id_type_operation)
+                - [] validation anti-chevauchement
+            - [] updateTranche($id, $min,$max,$frais)
+                - [] validation anti-chevauchement
+            - [] deleteTranche($id)
         - [] Affichage
             - [] saisie, fiche, liste
     - [] Situation Gain
@@ -48,7 +59,7 @@
                     - [] montant (intervalle)
                     - [] type de transaction
             - [] liste
-                - [] champs : date, montant, type, frais, béneficiaire (raha misy) 
+                - [] champs : date, montant, type, frais, béneficiaire (raha misy)
                 
 - [] Coté client (Tojo 3910)
     - [] Login

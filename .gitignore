@@ -17,3 +17,12 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 base.db
+
+writable/cache/*
+writable/logs/*
+writable/uploads/*
+writable/session/*
+!writable/cache/.gitkeep
+!writable/logs/.gitkeep
+!writable/uploads/.gitkeep
+!writable/session/.gitkeep

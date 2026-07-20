@@ -10,6 +10,7 @@
 
     <ul>
         <li><a href="<?= site_url('prefixes') ?>">Configuration des préfixes</a></li>
+        <li><a href="<?= site_url('type-operations') ?>">Configuration des types d'opérations et barèmes</a></li>
         <li><a href="<?= site_url('logout') ?>">Déconnexion</a></li>
     </ul>
 </body>

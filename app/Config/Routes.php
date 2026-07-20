@@ -17,7 +17,12 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     $routes->get('/prefixes', 'PrefixeController::index');
     $routes->post('/prefixes', 'PrefixeController::store');
+
+    $routes->get('/type-operations', 'TypeOperationController::index');
+    $routes->post('/type-operations', 'TypeOperationController::store');
+    $routes->get('/type-operations/(:num)/tranches', 'TrancheController::index/$1');
+    $routes->post('/type-operations/(:num)/tranches', 'TrancheController::store/$1');
+    $routes->get('/tranches/(:num)/edit', 'TrancheController::edit/$1');
+    $routes->post('/tranches/(:num)/update', 'TrancheController::update/$1');
+    $routes->post('/tranches/(:num)/delete', 'TrancheController::delete/$1');
 });
-
-
-
