@@ -3,8 +3,9 @@
     - [x] Script initialisation base (Tojo 3910)
 
 - [x] Init codeigniter (Fifaliana 3903)
+- [x] Integration template  (Tojo 3910)
 
-- [] Coté opérateur (Fifaliana 3903)
+- [x] Coté opérateur (Fifaliana 3903)
     - [x] Login
         - [x] Metier
             - [x] table operateur (username, password hashé)
