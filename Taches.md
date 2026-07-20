@@ -114,3 +114,55 @@
 - [X] Protection Routes (Fifaliana 3903)
     - [X]AuthFilter
     - [X] RoleFilter
+
+- [] V2
+- [] Coté opérateur
+    - [] config prefix (Fifaliana 3903)
+        - [] Metier
+            - [] modifier fonction addPrefix($prefix, $id_operateur)
+        - [] Base
+            - [] ajouter table opérateurs
+            - [] ajouter colonne opérateur (nullable : rehefa null dia tsika)
+        - [] Affichage
+            - [] ajouter dropdown pour choisir l'opérateur (nous inclus)
+    - [] commissions (Tojo 3910)
+        - [] Metier
+            - [] TransactionModel transfert() : ajouter vérification numéro opérateur
+                - [] Appliquer commission
+            - [] addConfCommission($valeur, $operateur)
+            - [] updateCommission($valeur, $operateur)
+        - [] Base
+            - [] ajouter table conf_commission
+        - [] Affichage
+            - [] saisie, liste
+    - [] Situation Gain (Fifaliana 3903)
+        - [] Metier
+            - [] getSituationGainByOperateur($type, $operateur)
+            - [] getSituationGainAutresOperateurs($type)
+            - [] modifier fonction getSituationGain() et getSituationGainGlobal()
+                - [] séparer les résultats
+        - [] Affichage
+            - [] ajouter les cartes pour les autres opérateurs
+            - [] ajouter graphes pour les autres opérateurs
+    
+    - [] Situation Montant (Fifaliana 3903)
+        - [] Metier
+            - [] getTotalMontantByOperateur($operateur)
+            - [] getTotalMontantGlobal() : le montant total qu'on a à payer partout
+        - [] Affichage 
+            - [] ajouter dans situation gain
+
+- [] Coté client (Tojo 3910)
+    - [] Frais de retrait
+        - [] Metier
+            - [] modifier fonction transfert() : ajouter bool payer_frais
+                - [] si oui, modifier montants à débiter et créditer
+        - [] Affichage
+            - [] ajouter checkbox pour payer les frais
+            - [] vérifier l'opérateur si autre
+    - [] Envoi multiple
+        - [] Metier
+            - [] modifier la fonction transfert() : modifier tel_beneficiaire en tableau
+        - [] Affichage
+            - [] ajouter bouton "+" si même opérateur    
+
