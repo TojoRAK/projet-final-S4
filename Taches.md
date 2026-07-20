@@ -3,10 +3,54 @@
     - [x] Script initialisation base (Tojo 3910)
 
 - [x] Init codeigniter (Fifaliana 3903)
-- [] Coté opérateur
-    - 
 
-- [] Coté client (Fifaliana 3903)
+- [] Coté opérateur (Fifaliana 3903)
+    - [] Login
+    - [] Configuration 
+        - [] Metier
+            - [] addPrefix($prefix)
+                - [] validation format 03X
+            - [] findAllPrefix()
+        - [] Affichage
+            - [] liste des prefixes
+            - [] saisie prefix
+    - [] Type Operations
+        - [] Metier
+            - [] addType($libelle)
+            - [] addTranche($min,$max,$frais, $id_type_operation)
+        - [] Affichage
+            - [] saisie, fiche, liste
+    - [] Situation Gain
+        - [] Metier
+            - [] getSituationGain($id_type)
+            - [] getSituationGlobale()
+        - [] Affichage
+            - [] Cartes retrait et transfert
+            - [] Graphes
+                - [] Retrait
+                - [] transfert
+                - [] Superposé
+    - [] Situation Client
+        - [] Metier
+            - [] getSituationClients()
+        - [] Affichage
+            - [] liste
+            - [] champs
+                - [] client (nom)
+                - [] telephone
+                - [] solde
+    - [] Historique Client
+        - [] Metier
+            - [] voirHistorique($id_client , $filtre[])
+        - Affichage 
+             - [] champs de filtres
+                    - [] date (intervalle)
+                    - [] montant (intervalle)
+                    - [] type de transaction
+            - [] liste
+                - [] champs : date, montant, type, frais, béneficiaire (raha misy) 
+                
+- [] Coté client (Tojo 3910)
     - [] Login
         - [] Metier
             - [] AuthModel
@@ -57,6 +101,6 @@
                 - [] liste historique 
                     - [] champs : date, montant, type, frais, béneficiaire (raha misy)  
 
-
-
-        
+- Protection Routes
+    - AuthFilter
+    - RoleFilter
