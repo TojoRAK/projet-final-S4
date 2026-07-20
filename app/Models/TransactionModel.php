@@ -77,72 +77,104 @@ class TransactionModel extends Model
         return $this->db->transStatus() ? true : 'Erreur technique, veuillez réessayer';
     }
 
-    public function transfert(int $id_client, int $montant, string $tel_beneficiaire, bool $payer_frais = false)
+    public function transfert(int $id_client, int $montant, array $tel_beneficiaires, bool $payer_frais = false)
     {
+        $tel_beneficiaires = array_values(array_unique(array_filter(array_map('trim', $tel_beneficiaires))));
+
+        if (empty($tel_beneficiaires)) {
+            return 'Aucun bénéficiaire renseigné';
+        }
+
         $authModel = new AuthModel();
         $compteModel = new CompteModel();
-
-        $beneficiaire = $authModel->verifierExistenceNum($tel_beneficiaire);
-
-        if (!$beneficiaire) {
-            return 'Numéro de bénéficiaire invalide ou inexistant';
-        }
+        $prefixeModel = new PrefixeModel();
 
         $compteEmetteur = $compteModel->getCompteByClient($id_client);
-        $compteBeneficiaire = $compteModel->getCompteByClient($beneficiaire->id);
 
-        if (!$compteEmetteur || !$compteBeneficiaire) {
+        if (!$compteEmetteur) {
             return 'Compte introuvable';
-        }
-
-        if ($compteEmetteur->id === $compteBeneficiaire->id) {
-            return 'Vous ne pouvez pas transférer vers votre propre compte';
         }
 
         $type = $this->db->table('type_operation')->where('libelle', 'transfert')->get()->getRow();
         $id_type_operation = $type->id;
+        $type_retrait = $this->db->table('type_operation')->where('libelle', 'retrait')->get()->getRow();
 
-        $frais_transfert = $this->getFrais($montant, $id_type_operation);
-        $frais_retrait_prepaye = 0;
+        $nombreBeneficiaires = count($tel_beneficiaires);
+        $montantParBeneficiaire = intdiv($montant, $nombreBeneficiaires);
+        $reste = $montant % $nombreBeneficiaires;
 
-        if ($payer_frais) {
-            $prefixeModel = new PrefixeModel();
-
-            if ($prefixeModel->estNotreOperateur($tel_beneficiaire)) {
-                $type_retrait = $this->db->table('type_operation')->where('libelle', 'retrait')->get()->getRow();
-                $frais_retrait_prepaye = $this->getFrais($montant, $type_retrait->id);
-            }
+        if ($montantParBeneficiaire < 1) {
+            return 'Montant trop faible pour être réparti entre tous les bénéficiaires';
         }
 
-        $frais = $frais_transfert + $frais_retrait_prepaye;
+        $envois = [];
+        $coutTotal = 0;
 
-        if ($compteEmetteur->solde < ($montant + $frais)) {
-            return "Solde insuffisant (frais de {$frais} Ar inclus)";
+        foreach ($tel_beneficiaires as $index => $tel) {
+            $beneficiaire = $authModel->verifierExistenceNum($tel);
+
+            if (!$beneficiaire) {
+                return "Numéro de bénéficiaire invalide ou inexistant : {$tel}";
+            }
+
+            $compteBeneficiaire = $compteModel->getCompteByClient($beneficiaire->id);
+
+            if (!$compteBeneficiaire) {
+                return "Compte introuvable pour le bénéficiaire {$tel}";
+            }
+
+            if ($compteBeneficiaire->id === $compteEmetteur->id) {
+                return 'Vous ne pouvez pas transférer vers votre propre compte';
+            }
+
+            $montantBase = $montantParBeneficiaire + ($index === 0 ? $reste : 0);
+            $frais_transfert = $this->getFrais($montantBase, $id_type_operation);
+            $frais_retrait_prepaye = 0;
+
+            if ($payer_frais && $prefixeModel->estNotreOperateur($tel)) {
+                $frais_retrait_prepaye = $this->getFrais($montantBase, $type_retrait->id);
+            }
+
+            $montantTransaction = $montantBase + $frais_retrait_prepaye;
+
+            $envois[] = [
+                'compte'  => $compteBeneficiaire,
+                'montant' => $montantTransaction,
+                'frais'   => $frais_transfert,
+            ];
+
+            $coutTotal += $montantTransaction + $frais_transfert;
+        }
+
+        if ($compteEmetteur->solde < $coutTotal) {
+            return "Solde insuffisant (frais inclus, total requis : {$coutTotal} Ar)";
         }
 
         $this->db->transStart();
 
-        $id_transaction = $this->insert([
-            'id_type_operation' => $id_type_operation,
-            'montant'           => $montant,
-            'frais_applique'    => $frais,
-            'date'              => date('Y-m-d H:i:s'),
-        ]);
+        foreach ($envois as $envoi) {
+            $id_transaction = $this->insert([
+                'id_type_operation' => $id_type_operation,
+                'montant'           => $envoi['montant'],
+                'frais_applique'    => $envoi['frais'],
+                'date'              => date('Y-m-d H:i:s'),
+            ]);
 
-        $this->db->table('mouvements')->insert([
-            'id_transaction' => $id_transaction,
-            'id_compte'      => $compteEmetteur->id,
-            'sens'           => 'debit',
-        ]);
+            $this->db->table('mouvements')->insert([
+                'id_transaction' => $id_transaction,
+                'id_compte'      => $compteEmetteur->id,
+                'sens'           => 'debit',
+            ]);
 
-        $this->db->table('mouvements')->insert([
-            'id_transaction' => $id_transaction,
-            'id_compte'      => $compteBeneficiaire->id,
-            'sens'           => 'credit',
-        ]);
+            $this->db->table('mouvements')->insert([
+                'id_transaction' => $id_transaction,
+                'id_compte'      => $envoi['compte']->id,
+                'sens'           => 'credit',
+            ]);
 
-        $compteModel->updateSolde($compteEmetteur->id, -($montant + $frais));
-        $compteModel->updateSolde($compteBeneficiaire->id, $montant);
+            $compteModel->updateSolde($compteEmetteur->id, -($envoi['montant'] + $envoi['frais']));
+            $compteModel->updateSolde($envoi['compte']->id, $envoi['montant']);
+        }
 
         $this->db->transComplete();
 
