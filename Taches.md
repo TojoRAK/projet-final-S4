@@ -64,8 +64,8 @@
                         - [X] message d'erreur
         - [X] Affichage
             - [X] auth/login.php
-    - [] Dashboard Client
-        - [] client/dashboard
+    - [X] Dashboard Client
+        - [X] client/dashboard
             - [X] Metier
                 - [X] voirSolde($id_compte)
                 - [X] getHistorique($id_compte)
@@ -74,32 +74,30 @@
             - [X] Affichage
                 - [X] Carte qui affiche le solde
                 - [X] historique des transactions
-        - [] client/operation
-            - [] Metier
+        - [X] client/operation
+            - [X] Metier
                 - [X] ajouterMouvement($id_client, $montant, $date, $type_operation)
                 - [X] transfert($id_client, $montant, $date,$tel_beneficiaire)
                     - [X] validation numéro beneficiaire
                     - [X] transaction
                     - [X] creation de deux mouvements
-            - [] Base
-            - [] Affichage
-                - [] champs: 
-                    - [] montant
-                    - [] type d'opération
-                    - [] numéro beneficiaire
-                        - [] ajout champ si transfert (JS)
+            - [X] Affichage
+                - [X] champs: 
+                    - [X] montant
+                    - [X] type d'opération
+                    - [X] numéro beneficiaire
+                        - [X] ajout champ si transfert (JS)
             
-        - [] client/historique
-            - [] Metier
-                - [] voirHistorique($id_client , $filtre[])
-            - [] Base
-            - [] Affichage
-                - [] champs de filtres
-                    - [] date (intervalle)
-                    - [] montant (intervalle)
-                    - [] type de transaction
-                - [] liste historique 
-                    - [] champs : date, montant, type, frais, béneficiaire (raha misy)  
+        - [X] client/historique
+            - [X] Metier
+                - [X] voirHistorique($id_client , $filtre[])
+            - [X] Affichage
+                - [X] champs de filtres
+                    - [X] date (intervalle)
+                    - [X] montant (intervalle)
+                    - [X] type de transaction
+                - [X] liste historique 
+                    - [X] champs : date, montant, type, frais, béneficiaire (raha misy)  
 
 - Protection Routes
     - AuthFilter

@@ -8,6 +8,8 @@
 <body>
     <h1>Nouvelle Opération</h1>
 
+    <a href="<?= base_url('/client/dashboard') ?>">Retour au tableau de bord</a>
+
     <?php if (session()->getFlashdata('success')): ?>
         <p><?= esc(session()->getFlashdata('success')) ?></p>
     <?php endif; ?>

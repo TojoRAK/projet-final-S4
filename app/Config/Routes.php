@@ -17,5 +17,6 @@ $routes->group('client', function ($routes){
     $routes->get('dashboard', 'CompteController::dashboard');
     $routes->get('operation', 'OperationController::index');
     $routes->post('operation', 'OperationController::store');
+    $routes->get('historique', 'CompteController::historique');
 });
 

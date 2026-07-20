@@ -6,7 +6,11 @@
     <title>Tableau de Bord</title>
 </head>
 <body>
+    
+
     <h1>BIENVENUE <?= esc(session()->get('client_nom')) ?></h1>
+    <a href="<?= base_url('/client/operation') ?>">Nouvelle transaction</a>
+    <a href="<?= base_url('/client/historique') ?>">Historique de transactions</a>
 
     <div>
         <h2>Solde</h2>
