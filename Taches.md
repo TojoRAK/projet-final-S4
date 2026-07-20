@@ -42,14 +42,14 @@
                 - [x] transfert
                 - [x] Superposé
     - [] Situation Client
-        - [] Metier
-            - [] getSituationClients()
-        - [] Affichage
-            - [] liste
-            - [] champs
-                - [] client (nom)
-                - [] telephone
-                - [] solde
+        - [x] Metier
+            - [x] getSituationClients()
+        - [x] Affichage
+            - [x] liste
+            - [x] champs
+                - [x] client (nom)
+                - [x] telephone
+                - [x] solde
     - [] Historique Client
         - [] Metier
             - [] voirHistorique($id_client , $filtre[])

@@ -12,6 +12,7 @@
         <li><a href="<?= site_url('prefixes') ?>">Configuration des préfixes</a></li>
         <li><a href="<?= site_url('type-operations') ?>">Configuration des types d'opérations et barèmes</a></li>
         <li><a href="<?= site_url('situation-gain') ?>">Situation des gains</a></li>
+        <li><a href="<?= site_url('situation-client') ?>">Situation des clients</a></li>
         <li><a href="<?= site_url('logout') ?>">Déconnexion</a></li>
     </ul>
 </body>

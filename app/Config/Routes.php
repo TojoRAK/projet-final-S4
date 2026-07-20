@@ -27,4 +27,6 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->post('/tranches/(:num)/delete', 'TrancheController::delete/$1');
 
     $routes->get('/situation-gain', 'SituationGainController::index');
+
+    $routes->get('/situation-client', 'SituationClientController::index');
 });
