@@ -29,4 +29,6 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/situation-gain', 'SituationGainController::index');
 
     $routes->get('/situation-client', 'SituationClientController::index');
+
+    $routes->get('/clients/(:num)/historique', 'HistoriqueClientController::index/$1');
 });

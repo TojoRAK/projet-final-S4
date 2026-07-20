@@ -18,6 +18,8 @@
                     <td><?= esc($c['nom']) ?></td>
                     <td><?= esc($c['telephone']) ?></td>
                     <td><?= esc($c['solde']) ?> Ar</td>
+                    <td><a href="<?= site_url('clients/' . $c['id_client'] . '/historique') ?>">Voir</a></td>
+                    
                 </tr>
             <?php endforeach; ?>
         </tbody>
