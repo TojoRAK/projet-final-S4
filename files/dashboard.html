@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard — Fifaliana</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== Sidebar : identique sur toutes les pages ===== -->
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="badge-logo">F</span>
+            Fifaliana
+        </div>
+        <ul class="sidebar-nav">
+            <li><a class="nav-link active" href="dashboard.html"><i class="bi bi-speedometer2"></i> Tableau de bord</a></li>
+            <li><a class="nav-link" href="liste.html"><i class="bi bi-list-ul"></i> Liste</a></li>
+            <li><a class="nav-link" href="formulaire.html"><i class="bi bi-pencil-square"></i> Formulaire</a></li>
+            <li><a class="nav-link" href="fiche.html"><i class="bi bi-card-text"></i> Fiche</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a class="nav-link" href="login.html"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
+        </div>
+    </aside>
+
+    <div class="main">
+        <div class="topbar">
+            <div>
+                <div class="eyebrow">Espace opérateur</div>
+                <h1>Tableau de bord</h1>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body">
+                            <div class="stat-icon"><i class="bi bi-cash-coin"></i></div>
+                            <div class="stat-label">Retrait</div>
+                            <div class="stat-value">128 400 Ar</div>
+                            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i> +12% ce mois</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body">
+                            <div class="stat-icon"><i class="bi bi-arrow-left-right"></i></div>
+                            <div class="stat-label">Transfert</div>
+                            <div class="stat-value">86 200 Ar</div>
+                            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i> +4% ce mois</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card stat-card">
+                        <div class="card-body">
+                            <div class="stat-icon"><i class="bi bi-wallet2"></i></div>
+                            <div class="stat-label">Gain global</div>
+                            <div class="stat-value">214 600 Ar</div>
+                            <div class="stat-trend"><i class="bi bi-arrow-up-short"></i> +9% ce mois</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="h6 mb-3">Accès rapides</h2>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <a href="liste.html" class="card text-decoration-none d-block h-100">
+                        <div class="card-body">
+                            <i class="bi bi-hash fs-4 mb-2 d-block" style="color: var(--bleu);"></i>
+                            <div class="fw-semibold text-body">Préfixes</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="liste.html" class="card text-decoration-none d-block h-100">
+                        <div class="card-body">
+                            <i class="bi bi-diagram-3 fs-4 mb-2 d-block" style="color: var(--bleu);"></i>
+                            <div class="fw-semibold text-body">Types d'opérations</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="liste.html" class="card text-decoration-none d-block h-100">
+                        <div class="card-body">
+                            <i class="bi bi-graph-up-arrow fs-4 mb-2 d-block" style="color: var(--bleu);"></i>
+                            <div class="fw-semibold text-body">Situation gain</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="liste.html" class="card text-decoration-none d-block h-100">
+                        <div class="card-body">
+                            <i class="bi bi-people fs-4 mb-2 d-block" style="color: var(--bleu);"></i>
+                            <div class="fw-semibold text-body">Situation clients</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
