@@ -1,27 +1,34 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier une tranche — Fifaliana</title>
-</head>
-<body>
-    <h1>Modifier la tranche</h1>
+<?php
+$space = 'operateur';
+$title = 'Modifier la tranche';
+$this->extend('layouts/main');
+?>
 
-    <?php if (session()->getFlashdata('error')) : ?>
-        <p><?= esc(session()->getFlashdata('error')) ?></p>
-    <?php endif; ?>
+<?php $this->section('content') ?>
 
-    <form action="<?= site_url('tranches/' . $tranche['id'] . '/update') ?>" method="post">
-        <?= csrf_field() ?>
-        <label for="min">Min</label>
-        <input type="number" id="min" name="min" value="<?= esc($tranche['min']) ?>" required>
-        <label for="max">Max</label>
-        <input type="number" id="max" name="max" value="<?= esc($tranche['max']) ?>" required>
-        <label for="frais">Frais</label>
-        <input type="number" id="frais" name="frais" value="<?= esc($tranche['frais']) ?>" required>
-        <button type="submit">Enregistrer</button>
-    </form>
+<div class="card" style="max-width: 480px;">
+    <div class="card-body">
+        <form action="<?= site_url('tranches/' . $tranche['id'] . '/update') ?>" method="post">
+            <?= csrf_field() ?>
+            <div class="mb-3">
+                <label class="form-label">Min</label>
+                <input type="number" class="form-control" id="min" name="min" value="<?= esc($tranche['min']) ?>" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Max</label>
+                <input type="number" class="form-control" id="max" name="max" value="<?= esc($tranche['max']) ?>" required>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Frais</label>
+                <input type="number" class="form-control" id="frais" name="frais" value="<?= esc($tranche['frais']) ?>" required>
+            </div>
 
-    <p><a href="<?= site_url('type-operations/' . $tranche['id_type_operation'] . '/tranches') ?>">&larr; Retour au barème</a></p>
-</body>
-</html>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check2"></i> Enregistrer</button>
+                <a href="<?= site_url('type-operations/' . $tranche['id_type_operation'] . '/tranches') ?>" class="btn btn-outline-secondary">Annuler</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<?php $this->endSection() ?>

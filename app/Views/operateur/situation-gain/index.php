@@ -1,108 +1,133 @@
-<!DOCTYPE html>
-<html lang="fr">
+<?php
+$space = 'operateur';
+$title = 'Situation des gains';
+$this->extend('layouts/main');
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Situation Gain</title>
-</head>
+<?php $this->section('content') ?>
 
-<body>
-    <h1>Situation des gains</h1>
-    <p><a href="<?= site_url('dashboard') ?>">&larr; Tableau de bord</a></p>
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="stat-icon"><i class="bi bi-cash-coin"></i></div>
+                <div class="stat-label">Retrait</div>
+                <div class="stat-value"><?= number_format($situationRetrait['total_montant'] ?? 0, 0, ',', ' ') ?> Ar</div>
+                <div class="stat-trend"><i class="bi bi-hash"></i> <?= esc($situationRetrait['nb_transactions'] ?? 0) ?> transactions — <?= number_format($situationRetrait['total_gain'] ?? 0, 0, ',', ' ') ?> Ar de gain</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="stat-icon"><i class="bi bi-arrow-left-right"></i></div>
+                <div class="stat-label">Transfert</div>
+                <div class="stat-value"><?= number_format($situationTransfert['total_montant'] ?? 0, 0, ',', ' ') ?> Ar</div>
+                <div class="stat-trend"><i class="bi bi-hash"></i> <?= esc($situationTransfert['nb_transactions'] ?? 0) ?> transactions — <?= number_format($situationTransfert['total_gain'] ?? 0, 0, ',', ' ') ?> Ar de gain</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="stat-icon"><i class="bi bi-wallet2"></i></div>
+                <div class="stat-label">Gain global</div>
+                <div class="stat-value"><?= number_format($situationGlobale['total_gain'] ?? 0, 0, ',', ' ') ?> Ar</div>
+                <div class="stat-trend"><i class="bi bi-hash"></i> <?= esc($situationGlobale['nb_transactions'] ?? 0) ?> transactions au total</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <h2>Cartes</h2>
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>Type</th>
-                <th>Nb transactions</th>
-                <th>Montant total</th>
-                <th>Gain (frais)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Retrait</td>
-                <td><?= esc($situationRetrait['nb_transactions'] ?? 0) ?></td>
-                <td><?= esc($situationRetrait['total_montant'] ?? 0) ?> Ar</td>
-                <td><?= esc($situationRetrait['total_gain'] ?? 0) ?> Ar</td>
-            </tr>
-            <tr>
-                <td>Transfert</td>
-                <td><?= esc($situationTransfert['nb_transactions'] ?? 0) ?></td>
-                <td><?= esc($situationTransfert['total_montant'] ?? 0) ?> Ar</td>
-                <td><?= esc($situationTransfert['total_gain'] ?? 0) ?> Ar</td>
-            </tr>
-            <tr>
-                <td><strong>Global (tous types)</strong></td>
-                <td><?= esc($situationGlobale['nb_transactions']) ?></td>
-                <td><?= esc($situationGlobale['total_montant']) ?> Ar</td>
-                <td><?= esc($situationGlobale['total_gain']) ?> Ar</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h6 mb-3">Évolution — Retrait</h2>
+                <canvas id="chart-retrait" height="180" data-evolution='<?= json_encode($situationRetrait['evolution'] ?? []) ?>'></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h6 mb-3">Évolution — Transfert</h2>
+                <canvas id="chart-transfert" height="180" data-evolution='<?= json_encode($situationTransfert['evolution'] ?? []) ?>'></canvas>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <p>
-        <em>
-            chart.js a integrer rehefa manao css
-        </em>
-    </p>
+<div class="card mb-4">
+    <div class="card-body">
+        <h2 class="h6 mb-3">Évolution — Superposé (Retrait / Transfert)</h2>
+        <canvas id="chart-superpose" height="120" data-evolution='<?= json_encode($evolutionCombinee) ?>'></canvas>
+    </div>
+</div>
 
-    <h2>Évolution — Retrait</h2>
-    <table border="1" cellpadding="4">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Gain</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach (($situationRetrait['evolution'] ?? []) as $row) : ?>
-                <tr>
-                    <td><?= esc($row['jour']) ?></td>
-                    <td><?= esc($row['gain']) ?> Ar</td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+<div class="row g-3">
+    <div class="col-md-4">
+        <h2 class="h6 mb-3">Détail — Retrait</h2>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover mb-0">
+                    <thead><tr><th>Date</th><th>Gain</th></tr></thead>
+                    <tbody>
+                        <?php foreach (($situationRetrait['evolution'] ?? []) as $row): ?>
+                            <tr>
+                                <td><?= esc($row['jour']) ?></td>
+                                <td><?= number_format($row['gain'], 0, ',', ' ') ?> Ar</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <h2>Évolution — Transfert</h2>
-    <table border="1" cellpadding="4">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Gain</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach (($situationTransfert['evolution'] ?? []) as $row) : ?>
-                <tr>
-                    <td><?= esc($row['jour']) ?></td>
-                    <td><?= esc($row['gain']) ?> Ar</td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+    <div class="col-md-4">
+        <h2 class="h6 mb-3">Détail — Transfert</h2>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover mb-0">
+                    <thead><tr><th>Date</th><th>Gain</th></tr></thead>
+                    <tbody>
+                        <?php foreach (($situationTransfert['evolution'] ?? []) as $row): ?>
+                            <tr>
+                                <td><?= esc($row['jour']) ?></td>
+                                <td><?= number_format($row['gain'], 0, ',', ' ') ?> Ar</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <h2>Évolution — Superposé (Retrait / Transfert)</h2>
-    <table border="1" cellpadding="4">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Retrait</th>
-                <th>Transfert</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($evolutionCombinee as $row) : ?>
-                <tr>
-                    <td><?= esc($row['jour']) ?></td>
-                    <td><?= esc($row['retrait']) ?> Ar</td>
-                    <td><?= esc($row['transfert']) ?> Ar</td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</body>
+    <div class="col-md-4">
+        <h2 class="h6 mb-3">Détail — Superposé</h2>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover mb-0">
+                    <thead><tr><th>Date</th><th>Retrait</th><th>Transfert</th></tr></thead>
+                    <tbody>
+                        <?php foreach ($evolutionCombinee as $row): ?>
+                            <tr>
+                                <td><?= esc($row['jour']) ?></td>
+                                <td><?= number_format($row['retrait'], 0, ',', ' ') ?> Ar</td>
+                                <td><?= number_format($row['transfert'], 0, ',', ' ') ?> Ar</td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
-</html>
+<?php $this->endSection() ?>
+
+<?php $this->section('scripts') ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="<?= base_url('assets/js/graphes.js') ?>"></script>
+<?php $this->endSection() ?>

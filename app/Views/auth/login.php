@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$title = 'Connexion';
+$eyebrow = 'Espace client';
+$this->extend('layouts/auth');
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
-</head>
+<?php $this->section('content') ?>
 
-<body>
-    <?php if (!empty($errors)): ?>
-        <div
-            style="margin: 0 0 16px 0; padding: 10px 12px; border: 1px solid #f5c2c7; background: #f8d7da; color: #842029; border-radius: 8px;">
-            <div><?= esc($errors) ?></div>
+<form action="/client/login" method="post">
+    <?= csrf_field() ?>
+    <div class="mb-4">
+        <label class="form-label">Numéro de téléphone</label>
+        <input type="text" class="form-control" name="telephone" id="telephone" placeholder="+2613XXXXXXXX ou 03XXXXXXXX" required autofocus>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 justify-content-center">Se connecter</button>
+    <small>Numéro test : 0322152576</small>
+    <a href="<?= site_url('/login')?>">Login Opérateur</a>
+</form>
 
-        </div>
-    <?php endif; ?>
-    <form action="/client/login" method="post">
-        <?= csrf_field() ?>
-        <div>
-            <label for="telephone">Numéro de téléphone:</label>
-            <input type="text" name="telephone" id="telephone" placeholder="+2613XXXXXXXX ou 03XXXXXXXX" required>
-        </div>
-        <button type="submit">Se connecter</button>
-    </form>
-
-</body>
-
-</html>
+<?php $this->endSection() ?>

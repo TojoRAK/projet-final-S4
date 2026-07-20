@@ -1,26 +1,34 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de Bord</title>
-</head>
-<body>
-    
+<?php
+$space = 'client';
+$title = 'Tableau de bord';
+$this->extend('layouts/main');
+?>
 
-    <h1>BIENVENUE <?= esc(session()->get('client')['nom'] ?? '') ?></h1>
-    <a href="<?= base_url('/client/operation') ?>">Nouvelle transaction</a>
-    <a href="<?= base_url('/client/historique') ?>">Historique de transactions</a>
+<?php $this->section('topbarActions') ?>
+<a href="<?= base_url('client/operation') ?>" class="btn btn-primary"><i class="bi bi-plus-lg"></i> Nouvelle opération</a>
+<?php $this->endSection() ?>
 
-    <div>
-        <h2>Solde</h2>
-        <p><?= $solde ?? 0 ?> Ar</p>
+<?php $this->section('content') ?>
+
+<h1 class="visually-hidden">BIENVENUE <?= esc(session()->get('client')['nom'] ?? '') ?></h1>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card stat-card">
+            <div class="card-body">
+                <div class="stat-icon"><i class="bi bi-wallet2"></i></div>
+                <div class="stat-label">Solde disponible</div>
+                <div class="stat-value"><?= number_format($solde ?? 0, 0, ',', ' ') ?> Ar</div>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div>
-        <h2>Historique des 10 dernières transactions</h2>
+<h2 class="h6 mb-3">Dernières transactions</h2>
+<div class="card">
+    <div class="card-body">
         <?php if (!empty($historique)): ?>
-            <table border="1" cellpadding="10" cellspacing="0">
+            <table class="table table-hover mb-0">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -34,21 +42,18 @@
                     <?php foreach ($historique as $transaction): ?>
                         <tr>
                             <td><?= esc($transaction->date) ?></td>
-                            <td><?= esc($transaction->libelle) ?></td>
-                            <td><?= esc($transaction->montant) ?> Ar</td>
-                            <td><?= esc($transaction->frais_applique) ?> Ar</td>
-                            <td><?= esc($transaction->sens) ?></td>
+                            <td><?= esc(ucfirst($transaction->libelle)) ?></td>
+                            <td><?= number_format($transaction->montant, 0, ',', ' ') ?> Ar</td>
+                            <td><?= number_format($transaction->frais_applique, 0, ',', ' ') ?> Ar</td>
+                            <td><span class="badge-statut"><?= esc($transaction->sens) ?></span></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         <?php else: ?>
-            <p>Aucune transaction</p>
+            <p class="text-muted mb-0">Aucune transaction</p>
         <?php endif; ?>
     </div>
+</div>
 
-    <div>
-        <a href="/client/logout">Se déconnecter</a>
-    </div>
-</body>
-</html>
+<?php $this->endSection() ?>

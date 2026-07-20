@@ -1,38 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Connexion</title>
-</head>
-<body>
-    <h1>Connexion opérateur</h1>
+<?php
+$title = 'Connexion';
+$eyebrow = 'Espace opérateur';
+$this->extend('layouts/auth');
+?>
 
-    <?php if (session()->getFlashdata('error')) : ?>
-        <p><?= esc(session()->getFlashdata('error')) ?></p>
-    <?php endif; ?>
+<?php $this->section('content') ?>
 
-    <?php if (session()->getFlashdata('errors')) : ?>
-        <ul>
-            <?php foreach (session()->getFlashdata('errors') as $error) : ?>
-                <li><?= esc($error) ?></li>
-            <?php endforeach; ?>
-        </ul>
-    <?php endif; ?>
+<form action="<?= site_url('login') ?>" method="post">
+    <?= csrf_field() ?>
+    <div class="mb-3">
+        <label class="form-label">Nom d'utilisateur</label>
+        <input type="text" class="form-control" id="username" name="username" value="<?= esc(old('username')) ?>" required autofocus>
+    </div>
+    <div class="mb-4">
+        <label class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100 justify-content-center">Se connecter</button>
+    <small>username : admin - password : admin</small>
+    <a href="<?= site_url('client/login')?>">Login client</a>
+</form>
 
-    <?php if (session()->getFlashdata('message')) : ?>
-        <p><?= esc(session()->getFlashdata('message')) ?></p>
-    <?php endif; ?>
-
-    <form action="<?= site_url('login') ?>" method="post">
-        <?= csrf_field() ?>
-
-        <label for="username">Nom d'utilisateur</label>
-        <input type="text" id="username" name="username" value="<?= esc(old('username')) ?>" required autofocus>
-
-        <label for="password">Mot de passe</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Se connecter</button>
-    </form>
-</body>
-</html>
+<?php $this->endSection() ?>
