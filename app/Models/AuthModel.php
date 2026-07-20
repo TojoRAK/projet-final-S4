@@ -39,7 +39,7 @@ class AuthModel extends Model
         return $this->getClientByPhone($this->normaliserNumero($num));
     }
 
-    private function normaliserNumero(string $num): string
+    public function normaliserNumero(string $num): string
     {
         if (str_starts_with($num, '+2613')) {
             return '0' . substr($num, 4);

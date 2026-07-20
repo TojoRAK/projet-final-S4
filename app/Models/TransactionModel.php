@@ -106,8 +106,12 @@ class TransactionModel extends Model
         $frais_retrait_prepaye = 0;
 
         if ($payer_frais) {
-            $type_retrait = $this->db->table('type_operation')->where('libelle', 'retrait')->get()->getRow();
-            $frais_retrait_prepaye = $this->getFrais($montant, $type_retrait->id);
+            $prefixeModel = new PrefixeModel();
+
+            if ($prefixeModel->estNotreOperateur($tel_beneficiaire)) {
+                $type_retrait = $this->db->table('type_operation')->where('libelle', 'retrait')->get()->getRow();
+                $frais_retrait_prepaye = $this->getFrais($montant, $type_retrait->id);
+            }
         }
 
         $frais = $frais_transfert + $frais_retrait_prepaye;
