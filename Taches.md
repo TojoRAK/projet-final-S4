@@ -117,14 +117,14 @@
 
 - [] V2
 - [] Coté opérateur
-    - [] config prefix (Fifaliana 3903)
-        - [] Metier
-            - [] modifier fonction addPrefix($prefix, $id_operateur)
+    - [x] config prefix (Fifaliana 3903)
+        - [x] Metier
+            - [x] modifier fonction addPrefix($prefix, $id_operateur)
         - [X] Base
             - [X] ajouter table opérateurs
             - [X] ajouter colonne opérateur dans conf_prefix (nullable : rehefa null dia tsika)
-        - [] Affichage
-            - [] ajouter dropdown pour choisir l'opérateur (nous inclus)
+        - [x] Affichage
+            - [x] ajouter dropdown pour choisir l'opérateur (nous inclus)
     - [] commissions (Tojo 3910)
         - [] Metier
             - [] TransactionModel transfert() : ajouter vérification numéro opérateur
