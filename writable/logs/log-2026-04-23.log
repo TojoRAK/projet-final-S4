@@ -1,0 +1,429 @@
+CRITICAL - 2026-04-23 11:25:41 --> CodeIgniter\Filters\Exceptions\FilterException: "before" filter must have a matching alias defined.
+[Method: GET, Route: /]
+in SYSTEMPATH/Filters/Filters.php on line 842.
+ 1 SYSTEMPATH/Filters/Filters.php(842): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias()
+ 2 SYSTEMPATH/Filters/Filters.php(487): CodeIgniter\Filters\Filters->processAliasesToClass()
+ 3 SYSTEMPATH/Filters/Filters.php(218): CodeIgniter\Filters\Filters->initialize()
+ 4 SYSTEMPATH/CodeIgniter.php(465): CodeIgniter\Filters\Filters->run()
+ 5 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:25:42 --> CodeIgniter\Filters\Exceptions\FilterException: "before" filter must have a matching alias defined.
+[Method: GET, Route: /]
+in SYSTEMPATH/Filters/Filters.php on line 842.
+ 1 SYSTEMPATH/Filters/Filters.php(842): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias()
+ 2 SYSTEMPATH/Filters/Filters.php(487): CodeIgniter\Filters\Filters->processAliasesToClass()
+ 3 SYSTEMPATH/Filters/Filters.php(218): CodeIgniter\Filters\Filters->initialize()
+ 4 SYSTEMPATH/CodeIgniter.php(465): CodeIgniter\Filters\Filters->run()
+ 5 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:25:47 --> CodeIgniter\Filters\Exceptions\FilterException: "before" filter must have a matching alias defined.
+[Method: GET, Route: login]
+in SYSTEMPATH/Filters/Filters.php on line 842.
+ 1 SYSTEMPATH/Filters/Filters.php(842): CodeIgniter\Filters\Exceptions\FilterException::forNoAlias()
+ 2 SYSTEMPATH/Filters/Filters.php(487): CodeIgniter\Filters\Filters->processAliasesToClass()
+ 3 SYSTEMPATH/Filters/Filters.php(218): CodeIgniter\Filters\Filters->initialize()
+ 4 SYSTEMPATH/CodeIgniter.php(465): CodeIgniter\Filters\Filters->run()
+ 5 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 6 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 8 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 9 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:57:32 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:57:49 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:12 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:13 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:50 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:50 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:50 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:50 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:51 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:51 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:51 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:51 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:58:52 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:59:48 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:59:49 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:59:49 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 11:59:49 --> ErrorException: Undefined variable $user
+[Method: GET, Route: livres]
+in APPPATH/Views/layout.php on line 14.
+ 1 APPPATH/Views/layout.php(14): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(240): include('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/app/Views/layout.php')
+ 3 SYSTEMPATH/View/View.php(243): CodeIgniter\View\View->{closure:CodeIgniter\View\View::render():237}()
+ 4 SYSTEMPATH/View/View.php(256): CodeIgniter\View\View->render()
+ 5 SYSTEMPATH/Common.php(1250): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/LivresController.php(42): view()
+ 7 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->index()
+ 8 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:51:16 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\LivresModel::getMostBorrowed
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(118): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:04 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:04 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:04 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:05 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:05 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:58 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:59 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:59 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:59 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
+CRITICAL - 2026-04-23 12:57:59 --> CodeIgniter\Exceptions\BadMethodCallException: Call to undefined method App\Models\UserModel::getMostActiveUsers
+[Method: GET, Route: dashboard]
+in SYSTEMPATH/Model.php on line 761.
+ 1 APPPATH/Controllers/LivresController.php(119): CodeIgniter\Model->__call()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\LivresController->dashboard()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/home/fifaliana/Itu/s4/INF205/codeigniter4-framework-b3359be/public/index.php')
