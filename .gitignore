@@ -17,3 +17,13 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 base.db
+
+# CodeIgniter 4 writable directory
+writable/cache/*
+writable/logs/*
+writable/uploads/*
+writable/session/*
+!writable/cache/.gitkeep
+!writable/logs/.gitkeep
+!writable/uploads/.gitkeep
+!writable/session/.gitkeep
