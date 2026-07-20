@@ -1,0 +1,296 @@
+:root {
+    --bleu:      #1856c4;
+    --bleu-fonce:#123f96;
+    --bleu-clair:#eaf1fd;
+    --encre:     #14161a;
+    --gris:      #6b7280;
+    --gris-clair:#9ca3af;
+    --ligne:     #e8eaed;
+    --fond:      #ffffff;
+    --fond-app:  #f7f8fa;
+    --sidebar-w: 250px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--fond-app);
+    color: var(--encre);
+    font-size: 0.92rem;
+}
+
+h1, h2, h3 { font-weight: 700; letter-spacing: -0.015em; }
+
+a { color: var(--bleu); text-decoration: none; }
+a:hover { color: var(--bleu-fonce); }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--fond);
+    border-right: 1px solid var(--ligne);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+}
+
+.sidebar-brand {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    padding: 0 0.5rem 1.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sidebar-brand .badge-logo {
+    width: 30px; height: 30px;
+    background: var(--bleu);
+    color: #fff;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0; margin: 0;
+    flex: 1;
+}
+
+.sidebar-nav .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    color: var(--gris);
+    font-weight: 500;
+    font-size: 0.88rem;
+    margin-bottom: 0.15rem;
+}
+
+.sidebar-nav .nav-link i { font-size: 1.05rem; width: 1.1rem; text-align: center; }
+
+.sidebar-nav .nav-link:hover {
+    background: var(--fond-app);
+    color: var(--encre);
+}
+
+.sidebar-nav .nav-link.active {
+    background: var(--bleu-clair);
+    color: var(--bleu-fonce);
+    font-weight: 600;
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--ligne);
+    padding-top: 1rem;
+}
+
+.sidebar-footer .nav-link { color: var(--gris-clair); }
+.sidebar-footer .nav-link:hover { color: #9a3b3b; }
+
+/* ---------- Main ---------- */
+.main {
+    margin-left: var(--sidebar-w);
+    min-height: 100vh;
+}
+
+.topbar {
+    background: var(--fond);
+    border-bottom: 1px solid var(--ligne);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.topbar .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gris-clair);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+.topbar h1 { font-size: 1.35rem; margin: 0; }
+
+.content { padding: 2rem; }
+
+/* ---------- Boutons ---------- */
+.btn {
+    font-weight: 600;
+    font-size: 0.88rem;
+    border-radius: 7px;
+    padding: 0.5rem 1rem;
+    box-shadow: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-primary { background: var(--bleu); border-color: var(--bleu); }
+.btn-primary:hover, .btn-primary:focus { background: var(--bleu-fonce); border-color: var(--bleu-fonce); }
+
+.btn-outline-secondary { border-color: var(--ligne); color: var(--encre); }
+.btn-outline-secondary:hover { background: var(--fond-app); color: var(--encre); border-color: var(--ligne); }
+
+.btn-outline-danger { border-color: var(--ligne); color: #9a3b3b; }
+.btn-outline-danger:hover { background: #9a3b3b; border-color: #9a3b3b; }
+
+.btn-sm { font-size: 0.8rem; padding: 0.35rem 0.7rem; }
+
+/* ---------- Cartes ---------- */
+.card {
+    border: 1px solid var(--ligne);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(20, 22, 26, 0.04);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.card-body { padding: 1.5rem; }
+
+.stat-card:hover {
+    box-shadow: 0 6px 16px rgba(20, 22, 26, 0.08);
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.15rem;
+    background: var(--bleu-clair);
+    color: var(--bleu);
+    margin-bottom: 0.9rem;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--gris);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.stat-value { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+
+.stat-trend {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1b8a5a;
+    display: flex; align-items: center; gap: 0.25rem;
+    margin-top: 0.35rem;
+}
+
+/* ---------- Formulaires ---------- */
+.form-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--gris);
+    font-weight: 600;
+}
+
+.form-control, .form-select {
+    border-color: var(--ligne);
+    border-radius: 7px;
+    font-size: 0.88rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--bleu);
+    box-shadow: 0 0 0 0.18rem rgba(24, 86, 196, 0.14);
+}
+
+/* ---------- Tableau ---------- */
+table { font-size: 0.88rem; }
+
+thead th {
+    border-bottom: 2px solid var(--encre) !important;
+    border-top: none !important;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--gris);
+    font-weight: 700;
+    background: transparent !important;
+    padding: 0.75rem 0.6rem;
+}
+
+tbody td { border-color: var(--ligne) !important; vertical-align: middle; padding: 0.75rem 0.6rem; }
+
+.table-hover tbody tr:hover { background-color: var(--fond-app); }
+
+.avatar-mini {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--bleu-clair);
+    color: var(--bleu-fonce);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+    margin-right: 0.5rem;
+}
+
+/* ---------- Alertes ---------- */
+.alert {
+    border: none;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.alert-danger { background: #fdf2f2; color: #8a2f2f; }
+.alert-success { background: var(--bleu-clair); color: var(--bleu-fonce); }
+
+/* ---------- Pagination / badges ---------- */
+.page-link { color: var(--encre); border-color: var(--ligne); font-size: 0.85rem; }
+.page-item.active .page-link { background: var(--bleu); border-color: var(--bleu); }
+
+.badge-statut {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 20px;
+    background: var(--bleu-clair);
+    color: var(--bleu-fonce);
+}
+
+/* ---------- Fiche (détail) ---------- */
+.fiche-ligne {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--ligne);
+}
+
+.fiche-ligne:last-child { border-bottom: none; }
+
+.fiche-cle {
+    color: var(--gris);
+    font-weight: 500;
+}
+
+.fiche-valeur { font-weight: 600; }
+
+/* ---------- Page login (sans sidebar) ---------- */
+.page-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--fond-app);
+}

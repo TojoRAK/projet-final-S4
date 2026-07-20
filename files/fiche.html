@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fiche — Fifaliana</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-brand">
+            <span class="badge-logo">F</span>
+            Fifaliana
+        </div>
+        <ul class="sidebar-nav">
+            <li><a class="nav-link" href="dashboard.html"><i class="bi bi-speedometer2"></i> Tableau de bord</a></li>
+            <li><a class="nav-link" href="liste.html"><i class="bi bi-list-ul"></i> Liste</a></li>
+            <li><a class="nav-link" href="formulaire.html"><i class="bi bi-pencil-square"></i> Formulaire</a></li>
+            <li><a class="nav-link active" href="fiche.html"><i class="bi bi-card-text"></i> Fiche</a></li>
+        </ul>
+        <div class="sidebar-footer">
+            <a class="nav-link" href="login.html"><i class="bi bi-box-arrow-right"></i> Déconnexion</a>
+        </div>
+    </aside>
+
+    <div class="main">
+        <div class="topbar">
+            <div>
+                <div class="eyebrow">Configuration</div>
+                <h1>Randria N.</h1>
+            </div>
+            <a href="formulaire.html" class="btn btn-primary"><i class="bi bi-pencil"></i> Modifier</a>
+        </div>
+
+        <div class="content">
+
+            <div class="card" style="max-width: 560px;">
+                <div class="card-body">
+                    <div class="fiche-ligne">
+                        <span class="fiche-cle">Nom</span>
+                        <span class="fiche-valeur">Randria N.</span>
+                    </div>
+                    <div class="fiche-ligne">
+                        <span class="fiche-cle">Téléphone</span>
+                        <span class="fiche-valeur">034 12 345 67</span>
+                    </div>
+                    <div class="fiche-ligne">
+                        <span class="fiche-cle">Statut</span>
+                        <span class="fiche-valeur"><span class="badge-statut">Actif</span></span>
+                    </div>
+                    <div class="fiche-ligne">
+                        <span class="fiche-cle">Solde</span>
+                        <span class="fiche-valeur">128 400 Ar</span>
+                    </div>
+                    <div class="fiche-ligne">
+                        <span class="fiche-cle">Créé le</span>
+                        <span class="fiche-valeur">12 juillet 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <a href="liste.html" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Retour à la liste</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
