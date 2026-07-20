@@ -6,176 +6,151 @@ use CodeIgniter\Model;
 
 class TransactionModel extends Model
 {
-    protected $table = 'transactions';
-    protected $primaryKey = 'id';
-    protected $useAutoIncrement = true;
-    protected $returnType = 'array';
-    protected $useSoftDeletes = false;
+    protected $table         = 'transactions';
+    protected $primaryKey    = 'id';
     protected $allowedFields = ['id_type_operation', 'montant', 'frais_applique', 'date'];
-
+    protected $returnType    = 'array';
     protected $useTimestamps = false;
 
-    public function getTypesOperation(): array
-    {
-        return $this->db->table('type_operation')->get()->getResultObject();
-    }
-
-    public function getTypeOperationById(int $id)
-    {
-        return $this->db->table('type_operation')->where('id', $id)->get()->getRow();
-    }
-
-    public function getFrais(int $montant, int $id_type_operation): int
-    {
-        $tranche = $this->db->table('tranches')
-            ->where('id_type_operation', $id_type_operation)
-            ->where('min <=', $montant)
-            ->where('max >=', $montant)
-            ->get()
-            ->getRow();
-
-        return $tranche ? (int) $tranche->frais : 0;
-    }
-
-    public function ajouterMouvement(int $id_client, int $montant, int $type_operation)
-    {
-        $compteModel = new CompteModel();
-        $compte = $compteModel->getCompteByClient($id_client);
-
-        if (!$compte) {
-            return 'Compte introuvable';
-        }
-
-        $type = $this->db->table('type_operation')->where('id', $type_operation)->get()->getRow();
-        $sens = ($type && $type->libelle === 'retrait') ? 'debit' : 'credit';
-        $frais = $this->getFrais($montant, $type_operation);
-
-        if ($sens === 'debit' && $compte->solde < ($montant + $frais)) {
-            return "Solde insuffisant (frais de {$frais} Ar inclus)";
-        }
-
-        $this->db->transStart();
-
-        $id_transaction = $this->insert([
-            'id_type_operation' => $type_operation,
-            'montant'           => $montant,
-            'frais_applique'    => $frais,
-            'date'              => date('Y-m-d H:i:s'),
-        ]);
-
-        $this->db->table('mouvements')->insert([
-            'id_transaction' => $id_transaction,
-            'id_compte'      => $compte->id,
-            'sens'           => $sens,
-        ]);
-
-        $variation = $sens === 'credit' ? $montant : -($montant + $frais);
-        $compteModel->updateSolde($compte->id, $variation);
-
-        $this->db->transComplete();
-
-        return $this->db->transStatus() ? true : 'Erreur technique, veuillez réessayer';
-    }
-
-
-    public function transfert(int $id_client, int $montant, string $tel_beneficiaire)
-    {
-        $authModel = new AuthModel();
-        $compteModel = new CompteModel();
-
-        $beneficiaire = $authModel->verifierExistenceNum($tel_beneficiaire);
-
-        if (!$beneficiaire) {
-            return 'Numéro de bénéficiaire invalide ou inexistant';
-        }
-
-        $compteEmetteur = $compteModel->getCompteByClient($id_client);
-        $compteBeneficiaire = $compteModel->getCompteByClient($beneficiaire->id);
-
-        if (!$compteEmetteur || !$compteBeneficiaire) {
-            return 'Compte introuvable';
-        }
-
-        if ($compteEmetteur->id === $compteBeneficiaire->id) {
-            return 'Vous ne pouvez pas transférer vers votre propre compte';
-        }
-
-        $type = $this->db->table('type_operation')->where('libelle', 'transfert')->get()->getRow();
-        $id_type_operation = $type->id;
-        $frais = $this->getFrais($montant, $id_type_operation);
-
-        if ($compteEmetteur->solde < ($montant + $frais)) {
-            return "Solde insuffisant (frais de {$frais} Ar inclus)";
-        }
-
-        $this->db->transStart();
-
-        $id_transaction = $this->insert([
-            'id_type_operation' => $id_type_operation,
-            'montant'           => $montant,
-            'frais_applique'    => $frais,
-            'date'              => date('Y-m-d H:i:s'),
-        ]);
-
-        $this->db->table('mouvements')->insert([
-            'id_transaction' => $id_transaction,
-            'id_compte'      => $compteEmetteur->id,
-            'sens'           => 'debit',
-        ]);
-
-        $this->db->table('mouvements')->insert([
-            'id_transaction' => $id_transaction,
-            'id_compte'      => $compteBeneficiaire->id,
-            'sens'           => 'credit',
-        ]);
-
-        $compteModel->updateSolde($compteEmetteur->id, -($montant + $frais));
-        $compteModel->updateSolde($compteBeneficiaire->id, $montant);
-
-        $this->db->transComplete();
-
-        return $this->db->transStatus() ? true : 'Erreur technique, veuillez réessayer';
-    }
 
     public function getSituationGain(int $idTypeOperation): array
     {
-        $totaux = $this->select(
-            'COUNT(*) AS nb_transactions,
-             COALESCE(SUM(montant), 0) AS total_montant,
-             COALESCE(SUM(frais_applique), 0) AS total_gain'
-        )
-            ->where('id_type_operation', $idTypeOperation)
-            ->first();
-
-        $evolution = $this->select(
-            "DATE(date) AS jour, COALESCE(SUM(frais_applique), 0) AS gain"
-        )
-            ->where('id_type_operation', $idTypeOperation)
-            ->groupBy('jour')
-            ->orderBy('jour', 'ASC')
-            ->findAll();
-
-        return [
-            'nb_transactions' => (int) ($totaux['nb_transactions'] ?? 0),
-            'total_montant'   => (int) ($totaux['total_montant'] ?? 0),
-            'total_gain'      => (int) ($totaux['total_gain'] ?? 0),
-            'evolution'       => $evolution,
-        ];
+        return $this->situationAvecEvolution($idTypeOperation, null, false);
     }
+
+
+    public function getSituationGainByOperateur(int $idTypeOperation, int $idOperateur): array
+    {
+        return $this->situationAvecEvolution($idTypeOperation, $idOperateur, false);
+    }
+
+
+    public function getSituationGainAutresOperateurs(int $idTypeOperation): array
+    {
+        return $this->situationAvecEvolution($idTypeOperation, null, true);
+    }
+
 
     public function getSituationGlobale(): array
     {
-        $totaux = $this->select(
-            'COUNT(*) AS nb_transactions,
-             COALESCE(SUM(montant), 0) AS total_montant,
-             COALESCE(SUM(frais_applique), 0) AS total_gain'
-        )->first();
+        return [
+            'nous'   => $this->situationParOperateur(null, null, false),
+            'autres' => $this->situationParOperateur(null, null, true),
+        ];
+    }
+
+
+    public function getTotalMontantByOperateur(int $idOperateur): array
+    {
+        $totaux = $this->situationParOperateur(null, $idOperateur, false);
+        $pourcentage = $this->recupererCommission($idOperateur);
 
         return [
-            'nb_transactions' => (int) ($totaux['nb_transactions'] ?? 0),
-            'total_montant'   => (int) ($totaux['total_montant'] ?? 0),
-            'total_gain'      => (int) ($totaux['total_gain'] ?? 0),
+            'total_montant'    => $totaux['total_montant'],
+            'pourcentage'      => $pourcentage,
+            // $pourcentage est une fraction (0,05 = 5%), pas un nombre entier de %
+            'montant_a_payer'  => (int) round($totaux['total_montant'] * $pourcentage),
         ];
+    }
+
+
+    public function getTotalMontantGlobal(): array
+    {
+        $operateurs   = $this->db->table('autres_operateurs')->get()->getResultArray();
+        $totalAPayer  = 0;
+        $details      = [];
+
+        foreach ($operateurs as $operateur) {
+            $situation = $this->getTotalMontantByOperateur((int) $operateur['id']);
+            $details[] = array_merge(['nom_operateur' => $operateur['nom_operateur']], $situation);
+            $totalAPayer += $situation['montant_a_payer'];
+        }
+
+        return [
+            'total_a_payer' => $totalAPayer,
+            'details'       => $details,
+        ];
+    }
+
+
+    private function situationAvecEvolution(int $idTypeOperation, ?int $idOperateur, bool $autresOperateurs): array
+    {
+        $totaux = $this->situationParOperateur($idTypeOperation, $idOperateur, $autresOperateurs);
+
+        $builder = $this->requeteBase()
+            ->select("DATE(transactions.date) AS jour, COALESCE(SUM(transactions.frais_applique), 0) AS gain")
+            ->where('transactions.id_type_operation', $idTypeOperation);
+
+        $builder = $this->appliquerFiltreOperateur($builder, $idOperateur, $autresOperateurs);
+
+        $totaux['evolution'] = $builder->groupBy('jour')->orderBy('jour', 'ASC')->get()->getResultArray();
+
+        return $totaux;
+    }
+
+
+    private function situationParOperateur(?int $idTypeOperation, ?int $idOperateur, bool $autresOperateurs): array
+    {
+        $builder = $this->requeteBase()->select(
+            'COUNT(*) AS nb_transactions,
+             COALESCE(SUM(transactions.montant), 0) AS total_montant,
+             COALESCE(SUM(transactions.frais_applique), 0) AS total_gain'
+        );
+
+        if ($idTypeOperation !== null) {
+            $builder->where('transactions.id_type_operation', $idTypeOperation);
+        }
+
+        $builder = $this->appliquerFiltreOperateur($builder, $idOperateur, $autresOperateurs);
+
+        $ligne = $builder->get()->getRowArray();
+
+        return [
+            'nb_transactions' => (int) ($ligne['nb_transactions'] ?? 0),
+            'total_montant'   => (int) ($ligne['total_montant'] ?? 0),
+            'total_gain'      => (int) ($ligne['total_gain'] ?? 0),
+        ];
+    }
+
+
+    private function requeteBase()
+    {
+        $sousRequete = $this->db->table('mouvements')
+            ->select('mouvements.id_transaction, MAX(conf_prefix.id_operateur) AS id_operateur_attribue')
+            ->join('compte', 'compte.id = mouvements.id_compte')
+            ->join('clients', 'clients.id = compte.id_client')
+            ->join('conf_prefix', 'conf_prefix.prefix = SUBSTR(clients.telephone, 1, 3)', 'left')
+            ->groupBy('mouvements.id_transaction')
+            ->getCompiledSelect(false);
+
+        return $this->db->table('transactions')
+            ->join("({$sousRequete}) AS attribution", 'attribution.id_transaction = transactions.id');
+    }
+
+
+    private function appliquerFiltreOperateur($builder, ?int $idOperateur, bool $autresOperateurs)
+    {
+        if ($autresOperateurs) {
+            return $builder->where('attribution.id_operateur_attribue IS NOT NULL', null, false);
+        }
+
+        if ($idOperateur !== null) {
+            return $builder->where('attribution.id_operateur_attribue', $idOperateur);
+        }
+
+        return $builder->where('attribution.id_operateur_attribue', null);
+    }
+
+
+    private function recupererCommission(int $idOperateur): float
+    {
+        $ligne = $this->db->table('conf_commission')
+            ->select('pourcentage')
+            ->where('id_operateur', $idOperateur)
+            ->get()
+            ->getRowArray();
+
+        return (float) ($ligne['pourcentage'] ?? 0);
     }
 
     public function voirHistorique(int $idClient, array $filtre = []): array
@@ -232,6 +207,7 @@ class TransactionModel extends Model
         return $lignes;
     }
 
+ 
     private function trouverBeneficiaire(int $idTransaction, array $idComptesClient): ?string
     {
         $autre = $this->db->table('mouvements')

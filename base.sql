@@ -94,4 +94,7 @@ CREATE TABLE conf_commission(
     pourcentage DOUBLE
 );
 
+insert into autres_operateurs(nom_operateur) values ('Orange'),('Airtel'),('Telma');
+insert into conf_commission(id_operateur,pourcentage) values (1,0.05),(2,0.05),(3,0.05);
+
 

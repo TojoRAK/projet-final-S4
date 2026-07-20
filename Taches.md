@@ -135,22 +135,22 @@
             - [X] ajouter table conf_commission
         - [] Affichage
             - [] saisie, liste
-    - [] Situation Gain (Fifaliana 3903)
-        - [] Metier
-            - [] getSituationGainByOperateur($type, $operateur)
-            - [] getSituationGainAutresOperateurs($type)
-            - [] modifier fonction getSituationGain() et getSituationGainGlobal()
-                - [] séparer les résultats
-        - [] Affichage
-            - [] ajouter les cartes pour les autres opérateurs
-            - [] ajouter graphes pour les autres opérateurs
+    - [x] Situation Gain (Fifaliana 3903)
+        - [x] Metier
+            - [x] getSituationGainByOperateur($type, $operateur)
+            - [x] getSituationGainAutresOperateurs($type)
+            - [x] modifier fonction getSituationGain() et getSituationGainGlobal()
+                - [x] séparer les résultats
+        - [x] Affichage
+            - [x] ajouter les cartes pour les autres opérateurs
+            - [x] ajouter graphes pour les autres opérateurs
     
-    - [] Situation Montant (Fifaliana 3903)
-        - [] Metier
-            - [] getTotalMontantByOperateur($operateur)
-            - [] getTotalMontantGlobal() : le montant total qu'on a à payer partout
-        - [] Affichage 
-            - [] ajouter dans situation gain
+    - [x] Situation Montant (Fifaliana 3903)
+        - [x] Metier
+            - [x] getTotalMontantByOperateur($operateur)
+            - [x] getTotalMontantGlobal() : le montant total qu'on a à payer partout
+        - [x] Affichage 
+            - [x] ajouter dans situation gain
 
 - [] Coté client (Tojo 3910)
     - [] Frais de retrait
