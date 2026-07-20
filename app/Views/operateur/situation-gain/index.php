@@ -39,11 +39,35 @@ $this->extend('layouts/main');
     </div>
 </div>
 
-<div class="alert alert-success mb-4"><i class="bi bi-bar-chart"></i> Graphes (Chart.js) à intégrer — les données ci-dessous alimenteront les courbes Retrait / Transfert / Superposé.</div>
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h6 mb-3">Évolution — Retrait</h2>
+                <canvas id="chart-retrait" height="180" data-evolution='<?= json_encode($situationRetrait['evolution'] ?? []) ?>'></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h6 mb-3">Évolution — Transfert</h2>
+                <canvas id="chart-transfert" height="180" data-evolution='<?= json_encode($situationTransfert['evolution'] ?? []) ?>'></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-4">
+    <div class="card-body">
+        <h2 class="h6 mb-3">Évolution — Superposé (Retrait / Transfert)</h2>
+        <canvas id="chart-superpose" height="120" data-evolution='<?= json_encode($evolutionCombinee) ?>'></canvas>
+    </div>
+</div>
 
 <div class="row g-3">
     <div class="col-md-4">
-        <h2 class="h6 mb-3">Évolution — Retrait</h2>
+        <h2 class="h6 mb-3">Détail — Retrait</h2>
         <div class="card">
             <div class="card-body">
                 <table class="table table-hover mb-0">
@@ -62,7 +86,7 @@ $this->extend('layouts/main');
     </div>
 
     <div class="col-md-4">
-        <h2 class="h6 mb-3">Évolution — Transfert</h2>
+        <h2 class="h6 mb-3">Détail — Transfert</h2>
         <div class="card">
             <div class="card-body">
                 <table class="table table-hover mb-0">
@@ -81,7 +105,7 @@ $this->extend('layouts/main');
     </div>
 
     <div class="col-md-4">
-        <h2 class="h6 mb-3">Évolution — Superposé</h2>
+        <h2 class="h6 mb-3">Détail — Superposé</h2>
         <div class="card">
             <div class="card-body">
                 <table class="table table-hover mb-0">
@@ -101,4 +125,9 @@ $this->extend('layouts/main');
     </div>
 </div>
 
+<?php $this->endSection() ?>
+
+<?php $this->section('scripts') ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="<?= base_url('assets/js/graphes.js') ?>"></script>
 <?php $this->endSection() ?>
