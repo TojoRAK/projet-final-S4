@@ -120,9 +120,9 @@
     - [] config prefix (Fifaliana 3903)
         - [] Metier
             - [] modifier fonction addPrefix($prefix, $id_operateur)
-        - [] Base
-            - [] ajouter table opérateurs
-            - [] ajouter colonne opérateur (nullable : rehefa null dia tsika)
+        - [X] Base
+            - [X] ajouter table opérateurs
+            - [X] ajouter colonne opérateur dans conf_prefix (nullable : rehefa null dia tsika)
         - [] Affichage
             - [] ajouter dropdown pour choisir l'opérateur (nous inclus)
     - [] commissions (Tojo 3910)
@@ -131,8 +131,8 @@
                 - [] Appliquer commission
             - [] addConfCommission($valeur, $operateur)
             - [] updateCommission($valeur, $operateur)
-        - [] Base
-            - [] ajouter table conf_commission
+        - [X] Base
+            - [X] ajouter table conf_commission
         - [] Affichage
             - [] saisie, liste
     - [] Situation Gain (Fifaliana 3903)

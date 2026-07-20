@@ -52,7 +52,7 @@ CREATE TABLE mouvements (
 );
 
 INSERT INTO conf_prefix (prefix) VALUES ('033'), ('037');
-
+REFERENCES
 INSERT INTO type_operation (libelle) VALUES ('depot'), ('retrait'), ('transfert');
 
 INSERT INTO tranches (min, max, frais, id_type_operation) VALUES
@@ -80,4 +80,18 @@ CREATE TABLE operateur (
 );
 
 INSERT INTO operateur (username, password) VALUES ('admin', '$2y$12$RIL6dmqdaj4eqJN2dpx67OsRRA0/R33OSJmzUwbN9/iDhV8Vu6TFy');
+
+CREATE TABLE autres_operateurs(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nom_operateur TEXT NOT NULL UNIQUE
+);
+
+ALTER TABLE conf_prefix ADD COLUMN id_operateur REFERENCES autres_operateurs(id) DEFAULT NULL;
+
+CREATE TABLE conf_commission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_operateur INTEGER REFERENCES autres_operateurs(id),
+    pourcentage DOUBLE
+);
+
 
