@@ -9,7 +9,7 @@ class TransactionModel extends Model
     protected $table = 'transactions';
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType = 'object';
+    protected $returnType = 'array';
     protected $useSoftDeletes = false;
     protected $allowedFields = ['id_type_operation', 'montant', 'frais_applique', 'date'];
 
@@ -37,13 +37,13 @@ class TransactionModel extends Model
         return $tranche ? (int) $tranche->frais : 0;
     }
 
-    public function ajouterMouvement(int $id_client, int $montant,  int $type_operation): bool
+    public function ajouterMouvement(int $id_client, int $montant, int $type_operation)
     {
         $compteModel = new CompteModel();
         $compte = $compteModel->getCompteByClient($id_client);
 
         if (!$compte) {
-            return false;
+            return 'Compte introuvable';
         }
 
         $type = $this->db->table('type_operation')->where('id', $type_operation)->get()->getRow();
@@ -51,7 +51,7 @@ class TransactionModel extends Model
         $frais = $this->getFrais($montant, $type_operation);
 
         if ($sens === 'debit' && $compte->solde < ($montant + $frais)) {
-            return false;
+            return "Solde insuffisant (frais de {$frais} Ar inclus)";
         }
 
         $this->db->transStart();
@@ -74,10 +74,11 @@ class TransactionModel extends Model
 
         $this->db->transComplete();
 
-        return $this->db->transStatus();
+        return $this->db->transStatus() ? true : 'Erreur technique, veuillez réessayer';
     }
 
-    public function transfert(int $id_client, int $montant, string $tel_beneficiaire): bool
+
+    public function transfert(int $id_client, int $montant, string $tel_beneficiaire)
     {
         $authModel = new AuthModel();
         $compteModel = new CompteModel();
@@ -85,22 +86,26 @@ class TransactionModel extends Model
         $beneficiaire = $authModel->verifierExistenceNum($tel_beneficiaire);
 
         if (!$beneficiaire) {
-            return false;
+            return 'Numéro de bénéficiaire invalide ou inexistant';
         }
 
         $compteEmetteur = $compteModel->getCompteByClient($id_client);
         $compteBeneficiaire = $compteModel->getCompteByClient($beneficiaire->id);
 
-        if (!$compteEmetteur || !$compteBeneficiaire || $compteEmetteur->id === $compteBeneficiaire->id) {
-            return false;
+        if (!$compteEmetteur || !$compteBeneficiaire) {
+            return 'Compte introuvable';
+        }
+
+        if ($compteEmetteur->id === $compteBeneficiaire->id) {
+            return 'Vous ne pouvez pas transférer vers votre propre compte';
         }
 
         $type = $this->db->table('type_operation')->where('libelle', 'transfert')->get()->getRow();
         $id_type_operation = $type->id;
-        $frais = $this->getFrais($montant,$id_type_operation);
+        $frais = $this->getFrais($montant, $id_type_operation);
 
         if ($compteEmetteur->solde < ($montant + $frais)) {
-            return false;
+            return "Solde insuffisant (frais de {$frais} Ar inclus)";
         }
 
         $this->db->transStart();
@@ -129,15 +134,8 @@ class TransactionModel extends Model
 
         $this->db->transComplete();
 
-        return $this->db->transStatus();
+        return $this->db->transStatus() ? true : 'Erreur technique, veuillez réessayer';
     }
-}
-    protected $table         = 'transactions';
-    protected $primaryKey    = 'id';
-    protected $allowedFields = ['id_type_operation', 'montant', 'frais_applique', 'date'];
-    protected $returnType    = 'array';
-    protected $useTimestamps = false;
-
 
     public function getSituationGain(int $idTypeOperation): array
     {
@@ -165,7 +163,6 @@ class TransactionModel extends Model
         ];
     }
 
- 
     public function getSituationGlobale(): array
     {
         $totaux = $this->select(
@@ -235,7 +232,6 @@ class TransactionModel extends Model
         return $lignes;
     }
 
- 
     private function trouverBeneficiaire(int $idTransaction, array $idComptesClient): ?string
     {
         $autre = $this->db->table('mouvements')

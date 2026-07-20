@@ -8,7 +8,7 @@
 <body>
     
 
-    <h1>BIENVENUE <?= esc(session()->get('client_nom')) ?></h1>
+    <h1>BIENVENUE <?= esc(session()->get('client')['nom'] ?? '') ?></h1>
     <a href="<?= base_url('/client/operation') ?>">Nouvelle transaction</a>
     <a href="<?= base_url('/client/historique') ?>">Historique de transactions</a>
 
@@ -48,7 +48,7 @@
     </div>
 
     <div>
-        <a href="/logout">Se déconnecter</a>
+        <a href="/client/logout">Se déconnecter</a>
     </div>
 </body>
 </html>

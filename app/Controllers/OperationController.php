@@ -10,7 +10,7 @@ class OperationController extends BaseController
     public function index()
     {
         if (!session()->get('client')) {
-            return redirect()->to('/login')->with('errors', 'Vous devez être connecté');
+            return redirect()->to('/client/login')->with('errors', 'Vous devez être connecté');
         }
 
         $transactionModel = new TransactionModel();
@@ -25,7 +25,7 @@ class OperationController extends BaseController
         $client = session()->get('client');
 
         if (!$client) {
-            return redirect()->to('/login')->with('errors', 'Vous devez être connecté');
+            return redirect()->to('/client/login')->with('errors', 'Vous devez être connecté');
         }
 
         $montant = (int) $this->request->getPost('montant');
@@ -35,14 +35,14 @@ class OperationController extends BaseController
         $type = $transactionModel->getTypeOperationById($type_operation);
 
         if ($type && $type->libelle === 'transfert') {
-            $success = $transactionModel->transfert($client['id'], $montant, $tel_beneficiaire);
+            $result = $transactionModel->transfert($client['id'], $montant, $tel_beneficiaire);
         } else {
-            $success = $transactionModel->ajouterMouvement($client['id'], $montant,  $type_operation);
+            $result = $transactionModel->ajouterMouvement($client['id'], $montant, $type_operation);
         }
 
-        if (!$success) {
+        if ($result !== true) {
             return redirect()->back()
-                ->with('errors', 'Opération impossible')
+                ->with('errors', $result)
                 ->withInput();
         }
 

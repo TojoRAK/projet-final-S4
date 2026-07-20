@@ -36,7 +36,16 @@ class AuthModel extends Model
         if (!preg_match('/^(\+2613|03)[0-9]{8}$/', $num)) {
             return null;
         }
-        return $this->getClientByPhone($num);
+        return $this->getClientByPhone($this->normaliserNumero($num));
+    }
+
+    private function normaliserNumero(string $num): string
+    {
+        if (str_starts_with($num, '+2613')) {
+            return '0' . substr($num, 4);
+        }
+
+        return $num;
     }
     public function getClientById(int $id)
     {

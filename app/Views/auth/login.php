@@ -15,7 +15,7 @@
 
         </div>
     <?php endif; ?>
-    <form action="/login" method="post">
+    <form action="/client/login" method="post">
         <?= csrf_field() ?>
         <div>
             <label for="telephone">Numéro de téléphone:</label>

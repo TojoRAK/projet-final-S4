@@ -1,6 +1,5 @@
 <?php
 
-use App\Controllers\Auth;
 use CodeIgniter\Router\RouteCollection;
 
 
@@ -9,11 +8,11 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 
-$routes->get('/login', 'AuthController::showLogin');
-$routes->post('/login', 'AuthController::doLogin');
-$routes->get('/logout', 'AuthController::logout');
-
 $routes->group('client', function ($routes){
+    $routes->get('login', 'ClientAuthController::showLogin');
+    $routes->post('login', 'ClientAuthController::doLogin');
+    $routes->get('logout', 'ClientAuthController::logout');
+
     $routes->get('dashboard', 'CompteController::dashboard');
     $routes->get('operation', 'OperationController::index');
     $routes->post('operation', 'OperationController::store');

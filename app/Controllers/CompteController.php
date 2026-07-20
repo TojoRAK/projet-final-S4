@@ -11,7 +11,7 @@ class CompteController extends BaseController
     public function historique()
     {
         if (!session()->get('client')) {
-            return redirect()->to('/login')->with('errors', 'Vous devez être connecté');
+            return redirect()->to('/client/login')->with('errors', 'Vous devez être connecté');
         }
 
         $client = session()->get('client');
@@ -37,8 +37,8 @@ class CompteController extends BaseController
 
     public function dashboard()
     {
-        if (!session()->get('logged_in')) {
-            return redirect()->to('/login')->with('error', 'Vous devez être connecté');
+        if (!session()->get('client')) {
+            return redirect()->to('/client/login')->with('error', 'Vous devez être connecté');
         }
 
         $client = session()->get('client');
@@ -47,7 +47,7 @@ class CompteController extends BaseController
         $compte = $compteModel->getCompteByClient($client['id']);
 
         if (!$compte) {
-            return redirect()->to('/login')->with('error', 'Compte introuvable');
+            return redirect()->to('/client/login')->with('error', 'Compte introuvable');
         }
 
         $solde = $compteModel->voirSolde($compte->id);
