@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\LivresController;
+use App\Controllers\Auth;
 use CodeIgniter\Router\RouteCollection;
 
 
@@ -8,20 +8,15 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
-$routes->get('/login', 'AuthController::form');
-$routes->post('/login', 'AuthController::login');
+$routes->get('/login', 'AuthController::login');
+$routes->post('/login', 'AuthController::attemptLogin');
 $routes->get('/logout', 'AuthController::logout');
-$routes->get('/users/(:num)', 'UserController::show/$1', ['filter' => 'auth']);
-$routes->get('/dashboard', 'LivresController::dashboard', ['filter' => 'auth']);
 
-$routes->group('livres', ['filter' => 'auth'], function($routes) {
-    $routes->get('/', 'LivresController::index');
-    $routes->get('create', 'LivresController::create');
-    $routes->post('store', 'LivresController::store');
-    $routes->get('(:num)', 'LivresController::show/$1');
-    $routes->post('delete/(:num)', 'LivresController::delete/$1');
-    $routes->post('emprunter/(:num)', 'LivresController::emprunter/$1');
-    $routes->post('retourner/(:num)', 'LivresController::retourner/$1');
+$routes->group('', ['filter' => 'auth'], function ($routes) {
+    $routes->get('/dashboard', 'DashboardController::index');
+
+    $routes->get('/prefixes', 'PrefixeController::index');
+    $routes->post('/prefixes', 'PrefixeController::store');
 });
 
 
