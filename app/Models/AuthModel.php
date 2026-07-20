@@ -13,10 +13,7 @@ class AuthModel extends Model
     protected $useSoftDeletes = false;
     protected $allowedFields = ['nom', 'telephone'];
 
-    protected $useTimestamps = true;
-    protected $dateFormat = 'datetime';
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
+    protected $useTimestamps = false;
 
     protected $validationRules = [
         'nom'       => 'required|min_length[2]',

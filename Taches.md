@@ -71,16 +71,16 @@
                 - [X] getHistorique($id_compte)
                     - [X] Limiter 10 dernières transactions
             - [] Base
-            - [] Affichage
-                - [] Carte qui affiche le solde
-                - [] historique des transactions
+            - [X] Affichage
+                - [X] Carte qui affiche le solde
+                - [X] historique des transactions
         - [] client/operation
             - [] Metier
-                - [] ajouterMouvement($id_client, $montant, $date, $type_operation)
-                - [] transfert($id_client, $montant, $date,$tel_beneficiaire)
-                    - [] validation numéro beneficiaire
-                    - [] transaction
-                    - [] creation de deux mouvements
+                - [X] ajouterMouvement($id_client, $montant, $date, $type_operation)
+                - [X] transfert($id_client, $montant, $date,$tel_beneficiaire)
+                    - [X] validation numéro beneficiaire
+                    - [X] transaction
+                    - [X] creation de deux mouvements
             - [] Base
             - [] Affichage
                 - [] champs: 

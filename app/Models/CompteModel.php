@@ -13,10 +13,7 @@ class CompteModel extends Model
     protected $useSoftDeletes = false;
     protected $allowedFields = ['id_client', 'solde'];
 
-    protected $useTimestamps = true;
-    protected $dateFormat = 'datetime';
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
+    protected $useTimestamps = false;
 
 
     public function voirSolde(int $id_compte): ?float
