@@ -50,7 +50,7 @@
             - [] liste
                 - [] champs : date, montant, type, frais, béneficiaire (raha misy) 
                 
-- [] Coté client (Tojo 3910)
+- [X] Coté client (Tojo 3910)
     - [X] Login
         - [X] Metier
             - [X] AuthModel
