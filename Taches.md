@@ -4,7 +4,7 @@
 
 - [x] Init codeigniter (Fifaliana 3903)
 
-- [] Coté opérateur (Fifaliana 3903)
+- [X] Coté opérateur (Fifaliana 3903)
     - [x] Login
         - [x] Metier
             - [x] table operateur (username, password hashé)
@@ -16,7 +16,7 @@
     - [x] Configuration 
         - [x] Metier
             - [x] addPrefix($prefix)
-                - x[] validation format 03X
+                - [X] validation format 03X
             - [x] findAllPrefix()
         - [x] Affichage
             - [x] liste des prefixes
@@ -25,9 +25,9 @@
         - [x] Metier
             - [x] addType($libelle)
             - [x] addTranche($min,$max,$frais, $id_type_operation)
-                - [] validation anti-chevauchement
+                - [X] validation anti-chevauchement
             - [x] updateTranche($id, $min,$max,$frais)
-                - [] validation anti-chevauchement
+                - [X] validation anti-chevauchement
             - [x] deleteTranche($id)
         - [x] Affichage
             - [x] saisie, fiche, liste
@@ -41,7 +41,7 @@
                 - [x] Retrait
                 - [x] transfert
                 - [x] Superposé
-    - [] Situation Client
+    - [X] Situation Client
         - [x] Metier
             - [x] getSituationClients()
         - [x] Affichage
@@ -50,16 +50,16 @@
                 - [x] client (nom)
                 - [x] telephone
                 - [x] solde
-    - [] Historique Client
-        - [] Metier
-            - [] voirHistorique($id_client , $filtre[])
+    - [X] Historique Client
+        - [X] Metier
+            - [X] voirHistorique($id_client , $filtre[])
         - Affichage 
-             - [] champs de filtres
-                    - [] date (intervalle)
-                    - [] montant (intervalle)
-                    - [] type de transaction
-            - [] liste
-                - [] champs : date, montant, type, frais, béneficiaire (raha misy)
+             - [X] champs de filtres
+                    - [X] date (intervalle)
+                    - [X] montant (intervalle)
+                    - [X] type de transaction
+            - [X] liste
+                - [X] champs : date, montant, type, frais, béneficiaire (raha misy)
                 
 - [X] Coté client (Tojo 3910)
     - [X] Login
@@ -110,6 +110,6 @@
                 - [X] liste historique 
                     - [X] champs : date, montant, type, frais, béneficiaire (raha misy)  
 
-- Protection Routes
-    - AuthFilter
-    - RoleFilter
+- [X] Protection Routes (Fifaliana 3903)
+    - [X]AuthFilter
+    - [X] RoleFilter
