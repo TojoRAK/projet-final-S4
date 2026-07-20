@@ -21,26 +21,26 @@
         - [x] Affichage
             - [x] liste des prefixes
             - [x] saisie prefix
-    - [] Type Operations
-        - [] Metier
-            - [] addType($libelle)
-            - [] addTranche($min,$max,$frais, $id_type_operation)
+    - [x] Type Operations
+        - [x] Metier
+            - [x] addType($libelle)
+            - [x] addTranche($min,$max,$frais, $id_type_operation)
                 - [] validation anti-chevauchement
-            - [] updateTranche($id, $min,$max,$frais)
+            - [x] updateTranche($id, $min,$max,$frais)
                 - [] validation anti-chevauchement
-            - [] deleteTranche($id)
-        - [] Affichage
-            - [] saisie, fiche, liste
-    - [] Situation Gain
-        - [] Metier
-            - [] getSituationGain($id_type)
-            - [] getSituationGlobale()
-        - [] Affichage
-            - [] Cartes retrait et transfert
-            - [] Graphes
-                - [] Retrait
-                - [] transfert
-                - [] Superposé
+            - [x] deleteTranche($id)
+        - [x] Affichage
+            - [x] saisie, fiche, liste
+    - [x] Situation Gain
+        - [x] Metier
+            - [x] getSituationGain($id_type)
+            - [x] getSituationGlobale()
+        - [x] Affichage
+            - [x] Cartes retrait et transfert
+            - [x] Graphes
+                - [x] Retrait
+                - [x] transfert
+                - [x] Superposé
     - [] Situation Client
         - [] Metier
             - [] getSituationClients()

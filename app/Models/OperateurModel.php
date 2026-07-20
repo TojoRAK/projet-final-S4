@@ -17,9 +17,7 @@ class OperateurModel extends Model
         return $this->where('username', $username)->first();
     }
 
-    /**
-     * Crée un operateur avec mot de passe déjà hashé.
-     */
+  
     public function createOperateur(string $username, string $plainPassword): int|false
     {
         return $this->insert([

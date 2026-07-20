@@ -25,4 +25,6 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/tranches/(:num)/edit', 'TrancheController::edit/$1');
     $routes->post('/tranches/(:num)/update', 'TrancheController::update/$1');
     $routes->post('/tranches/(:num)/delete', 'TrancheController::delete/$1');
+
+    $routes->get('/situation-gain', 'SituationGainController::index');
 });
