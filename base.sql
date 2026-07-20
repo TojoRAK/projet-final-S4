@@ -66,3 +66,5 @@ INSERT INTO tranches (min, max, frais, id_type_operation) VALUES
     (250001,   500000,  1500, 2),
     (500001,   1000000, 2500, 2),
     (1000001,  2000000, 3000, 2);
+
+INSERT INTO clients (nom,telephone) VALUES ('client' , '0322152576');

@@ -23,10 +23,10 @@ class AuthController extends BaseController
 
         if (!$client) {
             return redirect()->back()
-                ->with('error', 'Numéro de téléphone invalide ou inexistant')
+                ->with('errors', 'Numéro de téléphone invalide ou inexistant')
                 ->withInput();
         }
-        
+
         session()->set([
             'client_id' => $client->id,
             'client_nom' => $client->nom,
