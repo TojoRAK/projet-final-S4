@@ -107,3 +107,10 @@ insert into conf_commission(id_operateur,pourcentage) values (1,0.05),(2,0.05),(
 ALTER TABLE transactions ADD COLUMN id_operateur INTEGER REFERENCES autres_operateurs(id) DEFAULT NULL;
 
 
+CREATE TABLE conf_promotion (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    libelle TEXT NOT NULL,
+    valeur DOUBLE
+);
+
+INSERT INTO conf_promotion(libelle, valeur) VALUES ('Promotion frais de transfert' , 0.5);

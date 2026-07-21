@@ -86,7 +86,9 @@ class TransactionModel extends Model
         $compteModel = new CompteModel();
         $prefixeModel = new PrefixeModel();
         $commissionModel = new CommissionModel();
+        $promotionModel = new PromotionModel();
 
+        $promotion = $promotionModel->getPromotion(1)['valeur'];
         $compteEmetteur = $compteModel->getCompteByClient($id_client);
 
         if (!$compteEmetteur) {
@@ -146,22 +148,25 @@ class TransactionModel extends Model
                 $pourcentage = $commissionModel->getCommissionByOperateur($id_autre_operateur);
                 $commission = (int) round($montantBase * $pourcentage);
             }
+            else{
+                $frais_transfert *= $promotion;
+            }
 
             if ($payer_frais && $id_autre_operateur === null) {
                 $frais_retrait_prepaye = $this->getFrais($montantBase, $type_retrait->id);
             }
 
             $montantTransaction = $montantBase + $frais_retrait_prepaye;
-            $frais = $frais_transfert + $commission;
 
             $envois[] = [
-                'compte'        => $compteBeneficiaire,
-                'montant'       => $montantTransaction,
-                'frais'         => $frais,
-                'id_operateur'  => $id_autre_operateur,
+                'compte'       => $compteBeneficiaire,
+                'montant'      => $montantTransaction,
+                'frais_debit'  => $frais_transfert + $commission,
+                'frais_gain'   => $frais_transfert,
+                'id_operateur' => $id_autre_operateur,
             ];
 
-            $coutTotal += $montantTransaction + $frais;
+            $coutTotal += $montantTransaction + $frais_transfert + $commission;
         }
 
         if ($compteEmetteur->solde < $coutTotal) {
@@ -174,7 +179,7 @@ class TransactionModel extends Model
             $id_transaction = $this->insert([
                 'id_type_operation' => $id_type_operation,
                 'montant'           => $envoi['montant'],
-                'frais_applique'    => $envoi['frais'],
+                'frais_applique'    => $envoi['frais_gain'],
                 'date'              => date('Y-m-d H:i:s'),
                 'id_operateur'      => $envoi['id_operateur'],
             ]);
@@ -185,7 +190,7 @@ class TransactionModel extends Model
                 'sens'           => 'debit',
             ]);
 
-            $compteModel->updateSolde($compteEmetteur->id, -($envoi['montant'] + $envoi['frais']));
+            $compteModel->updateSolde($compteEmetteur->id, -($envoi['montant'] + $envoi['frais_debit']));
 
             if ($envoi['compte'] !== null) {
                 $this->db->table('mouvements')->insert([

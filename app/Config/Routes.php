@@ -7,8 +7,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 
+$routes->get('/','ClientAuthController::logout');
 
-$routes->group('client', function ($routes){
+$routes->group('client', function ($routes) {
     $routes->get('login', 'ClientAuthController::showLogin');
     $routes->post('login', 'ClientAuthController::doLogin');
     $routes->get('logout', 'ClientAuthController::logout');
@@ -45,4 +46,6 @@ $routes->group('', ['filter' => 'auth'], function ($routes) {
 
     $routes->get('/commissions', 'CommissionController::index');
     $routes->post('/commissions', 'CommissionController::store');
+    $routes->get('/promotions', 'PromotionController::index');
+    $routes->post('/promotions', 'PromotionController::store');
 });

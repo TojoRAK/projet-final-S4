@@ -19,6 +19,22 @@ $this->extend('layouts/main');
         </a>
     </div>
     <div class="col-md-3">
+        <a href="<?= site_url('promotions') ?>" class="card text-decoration-none d-block h-100">
+            <div class="card-body">
+                <i class="bi bi-hash fs-4 mb-2 d-block" style="color: var(--bleu);"></i>
+                <div class="fw-semibold text-body">Promotions</div>
+            </div>
+        </a>
+    </div>
+     <div class="col-md-3">
+        <a href="<?= site_url('commissions') ?>" class="card text-decoration-none d-block h-100">
+            <div class="card-body">
+                <i class="bi bi-hash fs-4 mb-2 d-block" style="color: var(--bleu);"></i>
+                <div class="fw-semibold text-body">Commissions</div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3">
         <a href="<?= site_url('type-operations') ?>" class="card text-decoration-none d-block h-100">
             <div class="card-body">
                 <i class="bi bi-diagram-3 fs-4 mb-2 d-block" style="color: var(--bleu);"></i>

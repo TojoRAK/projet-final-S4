@@ -166,3 +166,5 @@
         - [X] Affichage
             - [X] ajouter bouton "+" si même opérateur    
 
+- [X] Creer table configuration promotion
+- [X] Modifier la fonction transfert pour prendre en compte la promotion
