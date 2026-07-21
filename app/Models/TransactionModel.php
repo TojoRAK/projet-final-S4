@@ -87,9 +87,11 @@ class TransactionModel extends Model
         $prefixeModel = new PrefixeModel();
         $commissionModel = new CommissionModel();
         $promotionModel = new PromotionModel();
+        $epargneModel =  new EpargneModel();
 
         $promotion = $promotionModel->getPromotion(1)['valeur'];
         $compteEmetteur = $compteModel->getCompteByClient($id_client);
+        $epargneModel = $epargneModel->getEpargneByClient($id_client);
 
         if (!$compteEmetteur) {
             return 'Compte introuvable';
@@ -200,6 +202,8 @@ class TransactionModel extends Model
                 ]);
 
                 $compteModel->updateSolde($envoi['compte']->id, $envoi['montant']);
+                $epargneModel->updateEpargne($envoi['compte']->id, $envoi['montant']);
+                
             }
         }
 

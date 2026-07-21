@@ -168,3 +168,7 @@
 
 - [X] Creer table configuration promotion
 - [X] Modifier la fonction transfert pour prendre en compte la promotion
+
+- [] creer table conf_epargne
+- [] make function epagrner(id_client)
+- [] modifier fonction transfert pour separer montant 

@@ -114,3 +114,10 @@ CREATE TABLE conf_promotion (
 );
 
 INSERT INTO conf_promotion(libelle, valeur) VALUES ('Promotion frais de transfert' , 0.5);
+
+CREATE TABLE conf_epargne(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_client INTEGER NOT NULL,
+    pourcentage DOUBLE,
+    FOREIGN KEY (id_client) REFERENCES clients(id)
+);
